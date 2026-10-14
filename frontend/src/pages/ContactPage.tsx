@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Send, Mail, Phone, MapPin, Loader2 } from 'lucide-react'
 import { Github, Facebook, Instagram, TikTok } from '../components/icons/SocialIcons'
 import axios from 'axios'
+import emailjs from '@emailjs/browser'
 import toast from 'react-hot-toast'
 import PageWrapper from '../components/ui/PageWrapper'
 import FadeIn, { StaggerContainer, StaggerItem } from '../components/ui/FadeIn'
@@ -47,44 +48,43 @@ export default function ContactPage() {
     }
 
     setSubmitting(true)
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || ''
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || ''
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ''
+
+    // 1. Try sending via EmailJS official browser SDK if configured
+    if (serviceId && templateId && publicKey) {
+      try {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            name: form.name,
+            email: form.email,
+            subject: form.subject,
+            message: form.message,
+            from_name: form.name,
+            from_email: form.email,
+            reply_to: form.email,
+          },
+          publicKey
+        )
+      } catch (emailJsErr) {
+        console.warn('EmailJS browser direct send attempt:', emailJsErr)
+      }
+    }
+
+    // 2. Also forward to backend to record / send via SMTP if configured
     try {
       await axios.post('/api/contact', form)
-      toast.success(t('contact.success'))
-      setForm({ name: '', email: '', subject: '', message: '' })
-    } catch {
-      // Fallback: If backend is offline or static hosting, attempt direct EmailJS API send
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-
-      if (serviceId && templateId && publicKey) {
-        try {
-          await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-            service_id: serviceId,
-            template_id: templateId,
-            user_id: publicKey,
-            template_params: {
-              name: form.name,
-              email: form.email,
-              subject: form.subject,
-              message: form.message,
-              from_name: form.name,
-              from_email: form.email,
-              reply_to: form.email,
-            },
-          })
-          toast.success(t('contact.success'))
-          setForm({ name: '', email: '', subject: '', message: '' })
-          return
-        } catch {
-          // Fallback feedback if both fail
-        }
-      }
-      toast.success(t('contact.success'))
-      setForm({ name: '', email: '', subject: '', message: '' })
-    } finally {
-      setSubmitting(false)
+    } catch (backendErr) {
+      console.warn('Backend contact logging error:', backendErr)
     }
+
+    toast.success(t('contact.success'))
+    setForm({ name: '', email: '', subject: '', message: '' })
+    setSubmitting(false)
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

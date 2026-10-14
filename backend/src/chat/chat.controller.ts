@@ -2,7 +2,11 @@ import { Body, Controller, Post, HttpCode, HttpStatus } from '@nestjs/common'
 import { Throttle } from '@nestjs/throttler'
 import { ChatService } from './chat.service'
 
+import { IsNotEmpty, IsString } from 'class-validator'
+
 class ChatMessageDto {
+  @IsString()
+  @IsNotEmpty()
   message: string
 }
 

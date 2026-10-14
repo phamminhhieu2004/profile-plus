@@ -31,7 +31,7 @@ services:
       PORT: 3001
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-profile_plus}?schema=public
       GEMINI_API_KEY: ${GEMINI_API_KEY}
-      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash-lite}
       EMAILJS_SERVICE_ID: ${EMAILJS_SERVICE_ID}
       EMAILJS_TEMPLATE_ID: ${EMAILJS_TEMPLATE_ID}
       EMAILJS_PUBLIC_KEY: ${EMAILJS_PUBLIC_KEY}
@@ -49,6 +49,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        VITE_GEMINI_API_KEY: ${VITE_GEMINI_API_KEY:-${GEMINI_API_KEY}}
+        VITE_GEMINI_MODEL: ${VITE_GEMINI_MODEL:-${GEMINI_MODEL:-gemini-3.5-flash-lite}}
+        VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID:-${EMAILJS_SERVICE_ID}}
+        VITE_EMAILJS_TEMPLATE_ID: ${VITE_EMAILJS_TEMPLATE_ID:-${EMAILJS_TEMPLATE_ID}}
+        VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY:-${EMAILJS_PUBLIC_KEY}}
+        VITE_WEATHER_API_KEY: ${VITE_WEATHER_API_KEY:-${WEATHER_API_KEY}}
     container_name: profile_plus_frontend
     restart: always
     depends_on:

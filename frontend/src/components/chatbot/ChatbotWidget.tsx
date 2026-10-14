@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { MessageCircle, X, Send, Minimize2, Bot, User } from 'lucide-react'
 import { useAppStore } from '../../store/appStore'
 
+import axios from 'axios'
+
 interface Message {
   id: string
   role: 'user' | 'assistant'
@@ -11,7 +13,7 @@ interface Message {
   timestamp: Date
 }
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || ''
 const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-3.5-flash-lite'
 
 const SYSTEM_CONTEXT = `You are the AI assistant for Minh Hieu Dev (Phạm Minh Hiếu)'s personal portfolio website. 
@@ -32,61 +34,113 @@ async function streamGeminiResponse(
   history: Message[],
   onChunk: (chunk: string) => void
 ): Promise<void> {
-  if (!GEMINI_API_KEY) {
-    const responses = [
-      'Hiếu là một Backend Developer đam mê công nghệ từ Thái Nguyên, Việt Nam. Anh ấy có kỹ năng với Spring Boot, FastAPI, và TensorFlow!',
-      'Hieu specializes in backend development with Spring Boot and FastAPI, combined with automotive engineering expertise!',
-      'Bạn có thể liên hệ Hiếu qua Instagram (https://www.instagram.com/_.pmh.2004._/) hoặc Telegram (@pmh_2004)!',
-    ]
-    const response = responses[Math.floor(Math.random() * responses.length)]
-    for (const char of response) {
-      onChunk(char)
-      await new Promise((r) => setTimeout(r, 15))
+  const candidateModels = [
+    GEMINI_MODEL,
+    'gemini-3.5-flash-lite',
+    'gemini-flash-lite-latest',
+    'gemini-3.1-flash-lite',
+  ]
+
+  const conversationHistory = history
+    .filter((m) => m.content && m.id !== '0')
+    .slice(-6)
+    .map((m) => ({
+      role: m.role === 'assistant' ? 'model' : 'user',
+      parts: [{ text: m.content }],
+    }))
+
+  let streamedAny = false
+
+  // 1. Try streaming directly from Google Gemini API
+  if (GEMINI_API_KEY) {
+    for (const model of candidateModels) {
+      try {
+        const res = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: SYSTEM_CONTEXT }] },
+              contents: [
+                ...conversationHistory,
+                { role: 'user', parts: [{ text: userMessage }] },
+              ],
+              generationConfig: { temperature: 0.6, maxOutputTokens: 350 },
+            }),
+          }
+        )
+
+        if (!res.ok || !res.body) {
+          continue
+        }
+
+        const reader = res.body.getReader()
+        const decoder = new TextDecoder()
+        let buffer = ''
+
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+          buffer += decoder.decode(value, { stream: true })
+          const lines = buffer.split('\n')
+          buffer = lines.pop() || ''
+          for (const line of lines) {
+            const trimmed = line.trim()
+            if (!trimmed.startsWith('data: ')) continue
+            try {
+              const json = JSON.parse(trimmed.slice(6))
+              const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text
+              if (chunk) {
+                onChunk(chunk)
+                streamedAny = true
+              }
+            } catch { }
+          }
+        }
+
+        if (streamedAny) return
+      } catch {
+        // try next model or fallback
+      }
     }
-    return
   }
 
-  const conversationHistory = history.slice(-4).map((m) => ({
-    role: m.role === 'assistant' ? 'model' : 'user',
-    parts: [{ text: m.content }],
-  }))
-
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: SYSTEM_CONTEXT }] },
-        contents: [
-          ...conversationHistory,
-          { role: 'user', parts: [{ text: userMessage }] },
-        ],
-        generationConfig: { temperature: 0.6, maxOutputTokens: 350 },
-      }),
+  // 2. Fallback to backend /api/chat
+  try {
+    const backendRes = await axios.post('/api/chat', { message: userMessage })
+    const reply = backendRes.data?.data?.content
+    if (reply) {
+      for (const char of reply) {
+        onChunk(char)
+        await new Promise((r) => setTimeout(r, 10))
+      }
+      return
     }
-  )
+  } catch (err) {
+    console.warn('Backend chat fallback error:', err)
+  }
 
-  if (!res.body) throw new Error('No response body')
-  const reader = res.body.getReader()
-  const decoder = new TextDecoder()
-  let buffer = ''
+  // 3. Fallback to smart local contextual responder
+  const lower = userMessage.toLowerCase()
+  let fallback = ''
+  if (lower.includes('chào') || lower.includes('hello') || lower.includes('hi')) {
+    fallback = 'Chào bạn! Mình là trợ lý AI của Minh Hiếu (Minh Hieu Dev). Bạn muốn tìm hiểu về kỹ năng lập trình, các dự án công nghệ ô tô hay cách kết nối với Hiếu?'
+  } else if (lower.includes('kỹ năng') || lower.includes('skill') || lower.includes('công nghệ') || lower.includes('stack')) {
+    fallback = 'Hiếu thành thạo Spring Boot (95%), FastAPI (90%), TensorFlow (90%), Node.js (85%) và có chuyên môn về hệ thống chẩn đoán ô tô ECU/OBD!'
+  } else if (lower.includes('liên hệ') || lower.includes('contact') || lower.includes('email') || lower.includes('sđt') || lower.includes('phone') || lower.includes('instagram')) {
+    fallback = 'Bạn có thể kết nối với Hiếu qua Instagram @_.pmh.2004._, Telegram @pmh_2004, hoặc qua trang Liên hệ!'
+  } else if (lower.includes('học vấn') || lower.includes('trường') || lower.includes('ictu') || lower.includes('sinh viên')) {
+    fallback = 'Hiếu hiện là sinh viên chuyên ngành Kỹ thuật Công nghệ Ô tô tại Đại học Công nghệ Thông tin & Truyền thông (ICTU) từ năm 2022 đến nay.'
+  } else if (lower.includes('nhạc') || lower.includes('music') || lower.includes('dj') || lower.includes('producer')) {
+    fallback = 'Ngoài lập trình Backend và AI, Hiếu còn là DJ/Music Producer đam mê sáng tạo âm nhạc điện tử!'
+  } else {
+    fallback = 'Cảm ơn câu hỏi của bạn! Hiếu là một Backend & AI Developer từ Thái Nguyên, Việt Nam, luôn sẵn sàng kết nối và hợp tác trên các dự án thú vị.'
+  }
 
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-    buffer += decoder.decode(value, { stream: true })
-    const lines = buffer.split('\n')
-    buffer = lines.pop() || ''
-    for (const line of lines) {
-      const trimmed = line.trim()
-      if (!trimmed.startsWith('data: ')) continue
-      try {
-        const json = JSON.parse(trimmed.slice(6))
-        const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text
-        if (chunk) onChunk(chunk)
-      } catch { }
-    }
+  for (const char of fallback) {
+    onChunk(char)
+    await new Promise((r) => setTimeout(r, 12))
   }
 }
 

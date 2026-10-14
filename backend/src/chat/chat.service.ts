@@ -30,17 +30,26 @@ export class ChatService {
       return 'Hiếu là Backend Developer từ Thái Nguyên, chuyên Spring Boot, FastAPI và TensorFlow. Liên hệ qua GitHub: phamminhhieu2004 hoặc Instagram: @_.pmh.2004._!'
     }
 
-    try {
-      const modelName = this.configService.get<string>('GEMINI_MODEL') || 'gemini-3.5-flash-lite'
-      const model = this.genAI.getGenerativeModel({
-        model: modelName,
-        systemInstruction: PROFILE_CONTEXT,
-      })
-      const result = await model.generateContent(message)
-      return result.response.text()
-    } catch (error) {
-      this.logger.error('Gemini API error', error)
-      return 'Xin lỗi, tôi không thể trả lời ngay lúc này. Vui lòng thử lại sau!'
+    const candidateModels = [
+      this.configService.get<string>('GEMINI_MODEL') || 'gemini-3.5-flash-lite',
+      'gemini-flash-lite-latest',
+      'gemini-3.1-flash-lite',
+    ]
+
+    for (const modelName of candidateModels) {
+      try {
+        const model = this.genAI.getGenerativeModel({
+          model: modelName,
+          systemInstruction: PROFILE_CONTEXT,
+        })
+        const result = await model.generateContent(message)
+        const text = result?.response?.text()
+        if (text) return text
+      } catch (error: any) {
+        this.logger.warn(`Gemini attempt with ${modelName} failed: ${error?.message || error}`)
+      }
     }
+
+    return 'Hiếu là một Backend Developer đam mê công nghệ từ Thái Nguyên, Việt Nam. Bạn có thể kết nối với Hiếu qua GitHub: phamminhhieu2004 hoặc Instagram: @_.pmh.2004._!'
   }
 }
