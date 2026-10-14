@@ -24,7 +24,7 @@ interface Project {
 const projects: Project[] = [
   {
     id: '1',
-    title: 'Profile Plus Website',
+    title: 'Minh Hieu Dev Portfolio Website',
     description: 'Website cá nhân full-stack với React + NestJS, tích hợp AI chatbot Gemini, thời tiết real-time, blog system và đa ngôn ngữ.',
     tags: ['React', 'NestJS', 'TypeScript', 'PostgreSQL', 'Gemini AI'],
     category: 'backend',
@@ -111,7 +111,7 @@ export default function PortfolioPage() {
                   filter === cat.value ? 'text-white shadow-lg' : 'hover:bg-[var(--color-surface)]'
                 }`}
                 style={filter === cat.value
-                  ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }
+                  ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
                   : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                 }
               >
@@ -128,13 +128,13 @@ export default function PortfolioPage() {
                     <img
                       src={projects[0].image}
                       alt={projects[0].title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       loading="lazy"
                       decoding="async"
                     />
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                        style={{ background: 'linear-gradient(135deg, #6366f1, #ec4899)' }}>
+                      <span className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
+                        style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
                         ⭐ Featured
                       </span>
                     </div>
@@ -145,7 +145,7 @@ export default function PortfolioPage() {
                     <div className="flex flex-wrap gap-2 mb-6">
                       {projects[0].tags.map((tag) => (
                         <span key={tag} className="px-2.5 py-1 rounded-lg text-xs font-medium"
-                          style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1', border: '1px solid rgba(99,102,241,0.2)' }}>
+                          style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
                           {tag}
                         </span>
                       ))}
@@ -172,18 +172,18 @@ export default function PortfolioPage() {
                   className="card overflow-hidden flex flex-col h-full"
                   id={`project-${project.id}`}
                 >
-                  <div className="h-48 overflow-hidden relative">
+                  <div className="h-56 overflow-hidden relative">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                       loading="lazy"
                       decoding="async"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3">
-                      <span className="px-2 py-0.5 rounded-md text-xs font-semibold text-white uppercase"
-                        style={{ background: 'rgba(99,102,241,0.8)' }}>
+                      <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold text-white uppercase shadow-sm"
+                        style={{ background: 'linear-gradient(135deg, rgba(13,148,136,0.9), rgba(244,114,182,0.9))' }}>
                         {project.category}
                       </span>
                     </div>

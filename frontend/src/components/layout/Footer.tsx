@@ -8,7 +8,7 @@ const socialLinks = [
   { href: 'https://github.com/phamminhhieu2004', icon: Github, label: 'GitHub', color: 'hover:text-white' },
   { href: 'https://www.facebook.com/goodboy.real.minhhieu', icon: Facebook, label: 'Facebook', color: 'hover:text-blue-400' },
   { href: 'https://www.tiktok.com/@goodboy.real_2004', icon: TikTok, label: 'TikTok', color: 'hover:text-pink-400' },
-  { href: 'https://instagram.com/placeholder', icon: Instagram, label: 'Instagram', color: 'hover:text-pink-500' },
+  { href: 'https://www.instagram.com/_.pmh.2004._/', icon: Instagram, label: 'Instagram', color: 'hover:text-pink-400' },
   { href: 'https://t.me/pmh_2004', icon: Send, label: 'Telegram', color: 'hover:text-sky-400' },
 ]
 
@@ -31,7 +31,7 @@ export default function Footer() {
             <Link to="/" className="flex items-center gap-2 mb-4">
               <LogoSVG className="w-8 h-8" />
               <span className="font-bold text-lg tracking-tight" style={{ color: 'var(--color-text-primary)' }}>
-                Profile<span className="gradient-text">Plus</span>
+                Minh Hieu <span className="gradient-text">Dev</span>
               </span>
             </Link>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
@@ -48,7 +48,7 @@ export default function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-sm transition-colors hover:text-indigo-500"
+                    className="text-sm transition-colors hover:text-teal-400"
                     style={{ color: 'var(--color-text-secondary)' }}
                   >
                     {t(link.key)}
@@ -70,7 +70,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`p-2.5 rounded-xl border border-[var(--color-border)] transition-all hover:border-indigo-500/50 hover:bg-indigo-500/5 ${color}`}
+                  className={`p-2.5 rounded-xl border border-[var(--color-border)] transition-all hover:border-teal-500/50 hover:bg-teal-500/10 ${color}`}
                   style={{ color: 'var(--color-text-secondary)' }}
                 >
                   <Icon size={18} />

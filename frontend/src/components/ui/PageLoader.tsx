@@ -12,7 +12,7 @@ export default function PageLoader() {
           <motion.div
             className="absolute inset-0 rounded-full"
             style={{
-              background: 'linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899)',
+              background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #f472b6)',
               opacity: 0.2,
             }}
             animate={{ scale: [1, 1.3, 1] }}
@@ -20,7 +20,7 @@ export default function PageLoader() {
           />
           <motion.div
             className="absolute inset-2 rounded-full"
-            style={{ background: 'linear-gradient(135deg, #6366f1, #ec4899)' }}
+            style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
           />

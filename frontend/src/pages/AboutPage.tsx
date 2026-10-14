@@ -67,10 +67,10 @@ export default function AboutPage() {
             <FadeIn className="lg:col-span-2 flex flex-col items-center gap-6">
               <div className="relative">
                 <div className="w-52 h-52 rounded-3xl overflow-hidden shadow-2xl"
-                  style={{ border: '3px solid transparent', backgroundImage: 'linear-gradient(var(--color-surface), var(--color-surface)), linear-gradient(135deg, #6366f1, #ec4899)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
-                  <img src={avatarImg} alt="Phạm Minh Hiếu" className="w-full h-full object-cover" />
+                  style={{ border: '3px solid transparent', backgroundImage: 'linear-gradient(var(--color-surface), var(--color-surface)), linear-gradient(135deg, #14b8a6, #f472b6)', backgroundOrigin: 'border-box', backgroundClip: 'padding-box, border-box' }}>
+                  <img src={avatarImg} alt="Phạm Minh Hiếu" className="w-full h-full object-cover object-top" />
                 </div>
-                <div className="absolute -bottom-3 -right-3 glass rounded-xl px-3 py-1.5 text-xs font-semibold text-green-400 border border-green-400/30">
+                <div className="absolute -bottom-3 -right-3 glass rounded-xl px-3 py-1.5 text-xs font-semibold text-teal-400 border border-teal-400/30">
                   Open to work ✓
                 </div>
               </div>
@@ -104,13 +104,13 @@ export default function AboutPage() {
               <FadeIn delay={0.2}>
                 <div className="card p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <Heart size={18} className="text-pink-500" />
+                    <Heart size={18} className="text-pink-400" />
                     <h3 className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{t('about.interests')}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {(t('about.interests_list', { returnObjects: true }) as string[]).map((interest: string) => (
                       <span key={interest} className="px-3 py-1.5 rounded-xl text-sm font-medium"
-                        style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1', border: '1px solid rgba(99,102,241,0.2)' }}>
+                        style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
                         {interest}
                       </span>
                     ))}
@@ -119,8 +119,8 @@ export default function AboutPage() {
               </FadeIn>
 
               <FadeIn delay={0.3}>
-                <img src={picture2} alt="Phạm Minh Hiếu" className="rounded-2xl w-full object-cover shadow-lg"
-                  style={{ maxHeight: 280, border: '1px solid var(--color-border)' }} loading="lazy" decoding="async" />
+                <img src={picture2} alt="Phạm Minh Hiếu" className="rounded-2xl w-full h-80 sm:h-96 object-cover object-top shadow-lg"
+                  style={{ border: '1px solid var(--color-border)' }} loading="lazy" decoding="async" />
               </FadeIn>
             </div>
           </div>
@@ -128,8 +128,8 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 gap-12">
             <FadeIn>
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl" style={{ background: 'rgba(99,102,241,0.1)' }}>
-                  <GraduationCap size={20} className="text-indigo-500" />
+                <div className="p-2.5 rounded-xl" style={{ background: 'rgba(20,184,166,0.1)' }}>
+                  <GraduationCap size={20} className="text-teal-400" />
                 </div>
                 <h2 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{t('about.education')}</h2>
               </div>
@@ -137,17 +137,17 @@ export default function AboutPage() {
                 {educationHistory.map((edu) => (
                   <StaggerItem key={edu.institution}>
                     <div className="card p-5 relative overflow-hidden">
-                      <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-lg" style={{ background: 'linear-gradient(180deg, #6366f1, #ec4899)' }} />
+                      <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-lg" style={{ background: 'linear-gradient(180deg, #14b8a6, #f472b6)' }} />
                       <div className="pl-2">
                         <span className="text-xs font-semibold px-2 py-0.5 rounded-md mb-2 inline-block"
-                          style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1' }}>{edu.period}</span>
+                          style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6' }}>{edu.period}</span>
                         <h3 className="font-bold mb-0.5" style={{ color: 'var(--color-text-primary)' }}>{edu.major}</h3>
                         <p className="text-sm mb-3" style={{ color: 'var(--color-text-secondary)' }}>{edu.institution}</p>
                         {edu.details.length > 0 && (
                           <ul className="space-y-1">
                             {edu.details.map((d) => (
                               <li key={d} className="text-sm flex gap-2" style={{ color: 'var(--color-text-secondary)' }}>
-                                <span className="text-indigo-500 mt-1 flex-shrink-0">▸</span>
+                                <span className="text-teal-400 mt-1 flex-shrink-0">▸</span>
                                 {d}
                               </li>
                             ))}
@@ -162,8 +162,8 @@ export default function AboutPage() {
 
             <FadeIn delay={0.2}>
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2.5 rounded-xl" style={{ background: 'rgba(236,72,153,0.1)' }}>
-                  <Briefcase size={20} className="text-pink-500" />
+                <div className="p-2.5 rounded-xl" style={{ background: 'rgba(244,114,182,0.12)' }}>
+                  <Briefcase size={20} className="text-pink-400" />
                 </div>
                 <h2 className="text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>{t('about.experience')}</h2>
               </div>
@@ -171,16 +171,16 @@ export default function AboutPage() {
                 {workExperience.map((exp) => (
                   <StaggerItem key={exp.role}>
                     <div className="card p-5 relative overflow-hidden">
-                      <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-lg" style={{ background: 'linear-gradient(180deg, #ec4899, #8b5cf6)' }} />
+                      <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-lg" style={{ background: 'linear-gradient(180deg, #f472b6, #06b6d4)' }} />
                       <div className="pl-2">
                         <span className="text-xs font-semibold px-2 py-0.5 rounded-md mb-2 inline-block"
-                          style={{ background: 'rgba(236,72,153,0.1)', color: '#ec4899' }}>{exp.period}</span>
+                          style={{ background: 'rgba(244,114,182,0.12)', color: '#f472b6' }}>{exp.period}</span>
                         <h3 className="font-bold mb-0.5" style={{ color: 'var(--color-text-primary)' }}>{exp.role}</h3>
                         <p className="text-sm mb-3" style={{ color: 'var(--color-text-secondary)' }}>{exp.type}</p>
                         <ul className="space-y-1">
                           {exp.details.map((d) => (
                             <li key={d} className="text-sm flex gap-2" style={{ color: 'var(--color-text-secondary)' }}>
-                              <span className="text-pink-500 mt-1 flex-shrink-0">▸</span>
+                              <span className="text-pink-400 mt-1 flex-shrink-0">▸</span>
                               {d}
                             </li>
                           ))}

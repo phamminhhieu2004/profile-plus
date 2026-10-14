@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import * as nodemailer from 'nodemailer'
+import axios from 'axios'
 import { ContactDto } from './contact.dto'
 
 @Injectable()
@@ -10,13 +11,53 @@ export class ContactService {
   constructor(private readonly configService: ConfigService) {}
 
   async sendContactEmail(dto: ContactDto): Promise<{ success: boolean }> {
+    const emailJsServiceId = this.configService.get<string>('EMAILJS_SERVICE_ID')
+    const emailJsTemplateId = this.configService.get<string>('EMAILJS_TEMPLATE_ID')
+    const emailJsPublicKey = this.configService.get<string>('EMAILJS_PUBLIC_KEY')
+    const emailJsPrivateKey = this.configService.get<string>('EMAILJS_PRIVATE_KEY')
+
+    if (emailJsServiceId && emailJsTemplateId && emailJsPublicKey) {
+      try {
+        await axios.post(
+          'https://api.emailjs.com/api/v1.0/email/send',
+          {
+            service_id: emailJsServiceId,
+            template_id: emailJsTemplateId,
+            user_id: emailJsPublicKey,
+            accessToken: emailJsPrivateKey || undefined,
+            template_params: {
+              name: dto.name,
+              email: dto.email,
+              subject: dto.subject,
+              message: dto.message,
+              from_name: dto.name,
+              from_email: dto.email,
+              reply_to: dto.email,
+            },
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        )
+        this.logger.log(`Email sent successfully via EmailJS: ${dto.email} - ${dto.subject}`)
+        return { success: true }
+      } catch (err: any) {
+        this.logger.warn(`EmailJS send attempt failed: ${err?.response?.data || err?.message}`)
+      }
+    }
+
     const smtpHost = this.configService.get<string>('SMTP_HOST')
     const smtpUser = this.configService.get<string>('SMTP_USER')
     const smtpPass = this.configService.get<string>('SMTP_PASS')
-    const recipientEmail = this.configService.get<string>('RECIPIENT_EMAIL') || smtpUser
+    const recipientEmail =
+      this.configService.get<string>('CONTACT_RECEIVER') ||
+      this.configService.get<string>('RECIPIENT_EMAIL') ||
+      smtpUser
 
     if (!smtpHost || !smtpUser || !smtpPass) {
-      this.logger.warn('SMTP not configured — contact form submission logged only')
+      this.logger.warn('Neither EmailJS nor SMTP fully configured — contact form submission logged only')
       this.logger.log(`Contact: ${dto.name} <${dto.email}> — ${dto.subject}`)
       return { success: true }
     }

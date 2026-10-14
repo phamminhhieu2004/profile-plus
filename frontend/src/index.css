@@ -2,9 +2,9 @@
 
 @layer base {
   :root {
-    --color-primary-from: #6366f1;
-    --color-primary-mid: #8b5cf6;
-    --color-primary-to: #ec4899;
+    --color-primary-from: #0d9488;
+    --color-primary-mid: #06b6d4;
+    --color-primary-to: #f472b6;
     --color-bg: #ffffff;
     --color-surface: #f8fafc;
     --color-border: #e2e8f0;
@@ -12,18 +12,22 @@
     --color-text-secondary: #64748b;
     --color-text-muted: #94a3b8;
     --radius-card: 16px;
-    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.3);
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-glow: 0 0 35px rgba(20, 184, 166, 0.25);
   }
 
   .dark {
+    --color-primary-from: #14b8a6;
+    --color-primary-mid: #06b6d4;
+    --color-primary-to: #f472b6;
     --color-bg: #09090b;
-    --color-surface: #18181b;
-    --color-border: #27272a;
-    --color-text-primary: #fafafa;
-    --color-text-secondary: #a1a1aa;
-    --color-text-muted: #71717a;
+    --color-surface: #12151b;
+    --color-border: #1e2633;
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+    --color-text-muted: #64748b;
     --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 40px rgba(20, 184, 166, 0.3);
   }
 
   * {
@@ -44,14 +48,14 @@
   }
 
   ::selection {
-    background-color: rgba(99, 102, 241, 0.3);
+    background-color: rgba(20, 184, 166, 0.3);
     color: var(--color-text-primary);
   }
 }
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 45%, #f472b6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -69,7 +73,7 @@
     inset: 0;
     border-radius: var(--radius-card);
     padding: 1px;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #14b8a6, #06b6d4, #f472b6);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -83,8 +87,8 @@
   }
 
   .dark .glass {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(18, 21, 27, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .btn-primary {
@@ -97,7 +101,7 @@
     font-weight: 600;
     font-size: 15px;
     color: white;
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, #0d9488, #06b6d4);
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -107,7 +111,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    background: linear-gradient(135deg, #06b6d4, #f472b6);
     opacity: 0;
     transition: opacity 0.2s ease;
   }
@@ -118,7 +122,7 @@
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.45);
   }
 
   .btn-primary > * {
@@ -143,9 +147,9 @@
 
   .btn-secondary:hover {
     transform: translateY(-2px);
-    border-color: #6366f1;
-    color: #6366f1;
-    background: rgba(99, 102, 241, 0.05);
+    border-color: #14b8a6;
+    color: #14b8a6;
+    background: rgba(20, 184, 166, 0.08);
   }
 
   .card {
@@ -158,7 +162,7 @@
   .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-glow);
-    border-color: rgba(99, 102, 241, 0.3);
+    border-color: rgba(20, 184, 166, 0.35);
   }
 
   .section-title {
@@ -191,7 +195,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(135deg, #6366f1, #ec4899);
+    background: linear-gradient(135deg, #14b8a6, #f472b6);
     border-radius: 2px;
     transition: width 0.2s ease;
   }
@@ -216,7 +220,7 @@
   .progress-bar-fill {
     height: 100%;
     border-radius: 100px;
-    background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+    background: linear-gradient(90deg, #14b8a6, #06b6d4, #f472b6);
     transition: width 1s ease;
   }
 

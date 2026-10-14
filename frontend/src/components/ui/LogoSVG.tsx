@@ -12,9 +12,9 @@ export default function LogoSVG({ className = 'w-8 h-8' }: LogoSVGProps) {
     >
       <defs>
         <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#6366f1" />
-          <stop offset="50%" stopColor="#8b5cf6" />
-          <stop offset="100%" stopColor="#ec4899" />
+          <stop offset="0%" stopColor="#14b8a6" />
+          <stop offset="50%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#f472b6" />
         </linearGradient>
       </defs>
       <rect width="40" height="40" rx="10" fill="url(#logo-gradient)" />

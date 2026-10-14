@@ -12,19 +12,20 @@ interface Message {
 }
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY
+const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-3.5-flash-lite'
 
-const SYSTEM_CONTEXT = `You are an AI assistant for Phạm Minh Hiếu's personal website. 
+const SYSTEM_CONTEXT = `You are the AI assistant for Minh Hieu Dev (Phạm Minh Hiếu)'s personal portfolio website. 
 Here is his profile:
-- Name: Phạm Minh Hiếu (Pham Minh Hieu)
+- Name: Phạm Minh Hiếu (Minh Hieu Dev)
 - Born: 2004, Thái Nguyên, Vietnam
 - Major: Automotive Engineering at ICTU (2022-present)
 - Skills: Spring Boot (95%), FastAPI (90%), TensorFlow (90%), Node.js (85%), HTML/CSS (85%)
 - Automotive: Vehicle Systems (85%), ECU/OBD Diagnostics (80%), EV/Hybrid Tech (78%)
 - Hobbies: Backend development, AI/ML, Music Production (DJ/Producer)
-- Social: GitHub(phamminhhieu2004), Facebook, TikTok, Telegram(@pmh_2004)
+- Social: GitHub(phamminhhieu2004), Instagram(https://www.instagram.com/_.pmh.2004._/ or @_.pmh.2004._), Telegram(@pmh_2004), Facebook, TikTok
 - Certificates: Google Gemini Certified Educator, Faculty, Student
 - Open to work / collaboration opportunities
-Answer questions about Hiếu in the language the user writes in (Vietnamese or English). Be friendly and helpful.`
+Answer questions about Hiếu in the language the user writes in (Vietnamese or English). Be friendly, helpful, rapid, and keep responses concise (under 3-4 sentences) so that the user receives the answer as fast as possible.`
 
 async function streamGeminiResponse(
   userMessage: string,
@@ -35,23 +36,23 @@ async function streamGeminiResponse(
     const responses = [
       'Hiếu là một Backend Developer đam mê công nghệ từ Thái Nguyên, Việt Nam. Anh ấy có kỹ năng với Spring Boot, FastAPI, và TensorFlow!',
       'Hieu specializes in backend development with Spring Boot and FastAPI, combined with automotive engineering expertise!',
-      'Bạn có thể liên hệ Hiếu qua GitHub (phamminhhieu2004) hoặc Telegram (@pmh_2004)!',
+      'Bạn có thể liên hệ Hiếu qua Instagram (https://www.instagram.com/_.pmh.2004._/) hoặc Telegram (@pmh_2004)!',
     ]
     const response = responses[Math.floor(Math.random() * responses.length)]
     for (const char of response) {
       onChunk(char)
-      await new Promise((r) => setTimeout(r, 20))
+      await new Promise((r) => setTimeout(r, 15))
     }
     return
   }
 
-  const conversationHistory = history.slice(-6).map((m) => ({
+  const conversationHistory = history.slice(-4).map((m) => ({
     role: m.role === 'assistant' ? 'model' : 'user',
     parts: [{ text: m.content }],
   }))
 
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -61,7 +62,7 @@ async function streamGeminiResponse(
           ...conversationHistory,
           { role: 'user', parts: [{ text: userMessage }] },
         ],
-        generationConfig: { temperature: 0.7, maxOutputTokens: 512 },
+        generationConfig: { temperature: 0.6, maxOutputTokens: 350 },
       }),
     }
   )
@@ -69,15 +70,19 @@ async function streamGeminiResponse(
   if (!res.body) throw new Error('No response body')
   const reader = res.body.getReader()
   const decoder = new TextDecoder()
+  let buffer = ''
 
   while (true) {
     const { done, value } = await reader.read()
     if (done) break
-    const text = decoder.decode(value)
-    const lines = text.split('\n').filter((l) => l.startsWith('data: '))
+    buffer += decoder.decode(value, { stream: true })
+    const lines = buffer.split('\n')
+    buffer = lines.pop() || ''
     for (const line of lines) {
+      const trimmed = line.trim()
+      if (!trimmed.startsWith('data: ')) continue
       try {
-        const json = JSON.parse(line.slice(6))
+        const json = JSON.parse(trimmed.slice(6))
         const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text
         if (chunk) onChunk(chunk)
       } catch { }
@@ -149,7 +154,7 @@ export default function ChatbotWidget() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl text-white"
-        style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+        style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #f472b6)' }}
         aria-label="Toggle chatbot"
         id="chatbot-toggle"
       >
@@ -165,7 +170,7 @@ export default function ChatbotWidget() {
           )}
         </AnimatePresence>
         {!chatbotOpen && (
-          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-green-400 border-2 border-[var(--color-bg)] animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-teal-400 border-2 border-[var(--color-bg)] animate-pulse" />
         )}
       </motion.button>
 
@@ -184,13 +189,13 @@ export default function ChatbotWidget() {
           >
             <div
               className="flex items-center justify-between px-4 py-3"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', color: 'white' }}
+              style={{ background: 'linear-gradient(135deg, #0d9488, #06b6d4, #f472b6)', color: 'white' }}
             >
               <div className="flex items-center gap-2">
                 <Bot size={20} />
                 <div>
                   <p className="font-semibold text-sm">{t('chatbot.title')}</p>
-                  <p className="text-xs opacity-75">{t('chatbot.powered_by')}</p>
+                  <p className="text-xs opacity-85">Minh Hieu Dev · Gemini Fast AI</p>
                 </div>
               </div>
               <button onClick={toggleChatbot} className="p-1 rounded-lg hover:bg-white/20 transition-colors" aria-label="Minimize chatbot">
@@ -205,8 +210,8 @@ export default function ChatbotWidget() {
                     className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs"
                     style={{
                       background: msg.role === 'user'
-                        ? 'linear-gradient(135deg, #6366f1, #ec4899)'
-                        : 'linear-gradient(135deg, #8b5cf6, #6366f1)',
+                        ? 'linear-gradient(135deg, #0d9488, #f472b6)'
+                        : 'linear-gradient(135deg, #06b6d4, #14b8a6)',
                     }}
                   >
                     {msg.role === 'user' ? <User size={12} /> : <Bot size={12} />}
@@ -217,7 +222,7 @@ export default function ChatbotWidget() {
                     }`}
                     style={{
                       background: msg.role === 'user'
-                        ? 'linear-gradient(135deg, #6366f1, #8b5cf6)'
+                        ? 'linear-gradient(135deg, #0d9488, #06b6d4)'
                         : 'var(--color-bg)',
                       color: msg.role === 'user' ? 'white' : 'var(--color-text-primary)',
                       border: msg.role === 'assistant' ? '1px solid var(--color-border)' : 'none',
@@ -257,6 +262,8 @@ export default function ChatbotWidget() {
                     border: '1px solid var(--color-border)',
                     color: 'var(--color-text-primary)',
                   }}
+                  onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                  onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                   id="chatbot-input"
                 />
                 <motion.button
@@ -265,7 +272,7 @@ export default function ChatbotWidget() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-white disabled:opacity-50 transition-opacity"
-                  style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+                  style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }}
                   aria-label="Send message"
                   id="chatbot-send"
                 >

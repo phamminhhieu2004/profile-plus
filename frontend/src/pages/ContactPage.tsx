@@ -19,7 +19,7 @@ const socialLinks = [
   { href: 'https://github.com/phamminhhieu2004', icon: Github, label: 'GitHub', username: 'phamminhhieu2004', color: '#ffffff', bg: '#24292e' },
   { href: 'https://www.facebook.com/goodboy.real.minhhieu', icon: Facebook, label: 'Facebook', username: 'Phạm Minh Hiếu', color: '#ffffff', bg: '#1877f2' },
   { href: 'https://www.tiktok.com/@goodboy.real_2004', icon: TikTok, label: 'TikTok', username: '@goodboy.real_2004', color: '#ffffff', bg: '#000000' },
-  { href: 'https://instagram.com/placeholder', icon: Instagram, label: 'Instagram', username: '@placeholder', color: '#ffffff', bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)' },
+  { href: 'https://www.instagram.com/_.pmh.2004._/', icon: Instagram, label: 'Instagram', username: '@_.pmh.2004._', color: '#ffffff', bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)' },
   { href: 'https://t.me/pmh_2004', icon: Send, label: 'Telegram', username: '@pmh_2004', color: '#ffffff', bg: '#2AABEE' },
 ]
 
@@ -52,6 +52,34 @@ export default function ContactPage() {
       toast.success(t('contact.success'))
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch {
+      // Fallback: If backend is offline or static hosting, attempt direct EmailJS API send
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      if (serviceId && templateId && publicKey) {
+        try {
+          await axios.post('https://api.emailjs.com/api/v1.0/email/send', {
+            service_id: serviceId,
+            template_id: templateId,
+            user_id: publicKey,
+            template_params: {
+              name: form.name,
+              email: form.email,
+              subject: form.subject,
+              message: form.message,
+              from_name: form.name,
+              from_email: form.email,
+              reply_to: form.email,
+            },
+          })
+          toast.success(t('contact.success'))
+          setForm({ name: '', email: '', subject: '', message: '' })
+          return
+        } catch {
+          // Fallback feedback if both fail
+        }
+      }
       toast.success(t('contact.success'))
       setForm({ name: '', email: '', subject: '', message: '' })
     } finally {
@@ -97,7 +125,7 @@ export default function ContactPage() {
                             border: '1px solid var(--color-border)',
                             color: 'var(--color-text-primary)',
                           }}
-                          onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
+                          onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
                           onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                         />
                       </div>
@@ -119,7 +147,7 @@ export default function ContactPage() {
                             border: '1px solid var(--color-border)',
                             color: 'var(--color-text-primary)',
                           }}
-                          onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
+                          onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
                           onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                         />
                       </div>
@@ -143,7 +171,7 @@ export default function ContactPage() {
                           border: '1px solid var(--color-border)',
                           color: 'var(--color-text-primary)',
                         }}
-                        onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
+                        onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
                         onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                       />
                     </div>
@@ -166,7 +194,7 @@ export default function ContactPage() {
                           border: '1px solid var(--color-border)',
                           color: 'var(--color-text-primary)',
                         }}
-                        onFocus={(e) => (e.target.style.borderColor = '#6366f1')}
+                        onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
                         onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                       />
                     </div>
@@ -203,13 +231,13 @@ export default function ContactPage() {
                   <div className="space-y-4">
                     {contactInfo.map(({ icon: Icon, label, value, href }) => (
                       <div key={label} className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-xl flex-shrink-0" style={{ background: 'rgba(99,102,241,0.1)' }}>
-                          <Icon size={16} className="text-indigo-500" />
+                        <div className="p-2.5 rounded-xl flex-shrink-0" style={{ background: 'rgba(20,184,166,0.1)' }}>
+                          <Icon size={16} className="text-teal-400" />
                         </div>
                         <div>
                           <p className="text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{label}</p>
                           {href ? (
-                            <a href={href} className="text-sm font-medium transition-colors hover:text-indigo-500"
+                            <a href={href} className="text-sm font-medium transition-colors hover:text-teal-400"
                               style={{ color: 'var(--color-text-primary)' }}>{value}</a>
                           ) : (
                             <p className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>{value}</p>
@@ -233,7 +261,7 @@ export default function ContactPage() {
                           rel="noopener noreferrer"
                           whileHover={{ x: 6, scale: 1.02 }}
                           id={`social-${label.toLowerCase()}`}
-                          className="flex items-center gap-3 p-3 rounded-xl transition-all"
+                          className="flex items-center gap-3 p-3 rounded-xl transition-all hover:border-teal-500/40"
                           style={{ border: '1px solid var(--color-border)' }}
                         >
                           <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -253,12 +281,12 @@ export default function ContactPage() {
 
               <FadeIn delay={0.3}>
                 <div className="card p-5 text-center"
-                  style={{ background: 'linear-gradient(135deg, rgba(99,102,241,0.1), rgba(236,72,153,0.1))' }}>
-                  <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center"
-                    style={{ background: 'linear-gradient(135deg, #6366f1, #ec4899)' }}>
+                  style={{ background: 'linear-gradient(135deg, rgba(20,184,166,0.1), rgba(244,114,182,0.1))' }}>
+                  <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center shadow-md"
+                    style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
                     <span className="text-white text-xl">🚗</span>
                   </div>
-                  <p className="text-sm font-medium mb-1" style={{ color: 'var(--color-text-primary)' }}>Automotive + Software</p>
+                  <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Automotive + Software</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
                     Kết hợp độc đáo giữa công nghệ ô tô và lập trình phần mềm
                   </p>

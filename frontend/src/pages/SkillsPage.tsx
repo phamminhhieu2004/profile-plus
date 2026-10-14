@@ -80,8 +80,8 @@ function RadialSkillChart({ level, label, size = 100 }: { level: number; label: 
           />
           <defs>
             <linearGradient id="skill-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#6366f1" />
-              <stop offset="100%" stopColor="#ec4899" />
+              <stop offset="0%" stopColor="#14b8a6" />
+              <stop offset="100%" stopColor="#f472b6" />
             </linearGradient>
           </defs>
         </svg>
@@ -121,7 +121,7 @@ export default function SkillsPage() {
                     : 'hover:bg-[var(--color-surface)]'
                 }`}
                 style={activeCategory === cat
-                  ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }
+                  ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
                   : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                 }
               >

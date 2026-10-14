@@ -47,7 +47,7 @@ function TypingEffect() {
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity }}
         className="ml-0.5"
-        style={{ color: '#6366f1' }}
+        style={{ color: '#14b8a6' }}
       >
         |
       </motion.span>
@@ -91,21 +91,21 @@ export default function HomePage() {
         <div
           className="absolute inset-0 -z-10"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(99,102,241,0.15) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(236,72,153,0.1) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(20,184,166,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(244,114,182,0.15) 0%, transparent 60%)',
           }}
         />
 
-        <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-5 -z-10"
-          style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }} />
-        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-5 -z-10"
-          style={{ background: 'radial-gradient(circle, #ec4899, transparent)' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-10 -z-10"
+          style={{ background: 'radial-gradient(circle, #14b8a6, transparent)' }} />
+        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-10 -z-10"
+          style={{ background: 'radial-gradient(circle, #f472b6, transparent)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <FadeIn delay={0.1}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
-                style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1', border: '1px solid rgba(99,102,241,0.2)' }}>
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
+                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
                 {t('hero.available')}
               </div>
             </FadeIn>
@@ -129,10 +129,10 @@ export default function HomePage() {
 
             <FadeIn delay={0.5}>
               <div className="flex items-center gap-3 mb-6" style={{ color: 'var(--color-text-secondary)' }}>
-                <MapPin size={16} className="text-indigo-500" />
+                <MapPin size={16} className="text-teal-400" />
                 <span className="text-sm">Thái Nguyên, Việt Nam</span>
                 <span className="w-1 h-1 rounded-full bg-current" />
-                <Briefcase size={16} className="text-indigo-500" />
+                <Briefcase size={16} className="text-teal-400" />
                 <span className="text-sm">ICTU University</span>
               </div>
             </FadeIn>
@@ -166,17 +166,17 @@ export default function HomePage() {
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'conic-gradient(from 0deg, #6366f1, #8b5cf6, #ec4899, #6366f1)',
+                  background: 'conic-gradient(from 0deg, #14b8a6, #06b6d4, #f472b6, #14b8a6)',
                   padding: '3px',
                   borderRadius: '50%',
                 }}
               />
               <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden"
-                style={{ padding: '4px', background: 'conic-gradient(from 0deg, #6366f1, #8b5cf6, #ec4899, #6366f1)', borderRadius: '50%' }}>
+                style={{ padding: '4px', background: 'conic-gradient(from 0deg, #14b8a6, #06b6d4, #f472b6, #14b8a6)', borderRadius: '50%' }}>
                 <img
                   src={avatarImg}
                   alt="Phạm Minh Hiếu"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full object-cover object-top rounded-full"
                   style={{ background: 'var(--color-surface)' }}
                 />
               </div>
@@ -188,7 +188,7 @@ export default function HomePage() {
                 style={{ border: '1px solid var(--color-border)' }}
               >
                 <div className="flex items-center gap-2">
-                  <Github size={16} className="text-indigo-500" />
+                  <Github size={16} className="text-teal-400" />
                   <span className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>GitHub</span>
                 </div>
               </motion.div>
@@ -200,7 +200,7 @@ export default function HomePage() {
                 style={{ border: '1px solid var(--color-border)' }}
               >
                 <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Google Certified</p>
-                <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>Gemini AI ✨</p>
+                <p className="text-sm font-semibold gradient-text">Gemini AI ✨</p>
               </motion.div>
             </div>
           </FadeIn>
@@ -249,7 +249,7 @@ export default function HomePage() {
               <img
                 src={heroImg}
                 alt="Phạm Minh Hiếu working"
-                className="rounded-2xl w-full object-cover shadow-2xl"
+                className="rounded-2xl w-full object-cover object-top shadow-2xl"
                 style={{ maxHeight: 450, border: '1px solid var(--color-border)' }}
                 loading="lazy"
                 decoding="async"

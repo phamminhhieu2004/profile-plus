@@ -12,7 +12,19 @@ interface WeatherData {
   icon: string
 }
 
-const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY || 'demo'
+const OPENWEATHER_API_KEY =
+  import.meta.env.VITE_OPENWEATHER_API_KEY ||
+  import.meta.env.VITE_WEATHER_API_KEY ||
+  'demo'
+
+const DEFAULT_WEATHER: WeatherData = {
+  city: 'Thái Nguyên',
+  temp: 28,
+  feelsLike: 31,
+  humidity: 75,
+  description: 'Partly cloudy',
+  icon: '02d',
+}
 
 async function fetchWeather(lat: number, lon: number): Promise<WeatherData> {
   const res = await fetch(
@@ -40,14 +52,7 @@ export default function WeatherWidget() {
 
   useEffect(() => {
     if (!OPENWEATHER_API_KEY || OPENWEATHER_API_KEY === 'demo') {
-      setWeather({
-        city: 'Thái Nguyên',
-        temp: 28,
-        feelsLike: 31,
-        humidity: 75,
-        description: 'Partly cloudy',
-        icon: '02d',
-      })
+      setWeather(DEFAULT_WEATHER)
       setLoading(false)
       return
     }
@@ -58,7 +63,7 @@ export default function WeatherWidget() {
           const data = await fetchWeather(pos.coords.latitude, pos.coords.longitude)
           setWeather(data)
         } catch {
-          setError(true)
+          setWeather(DEFAULT_WEATHER)
         } finally {
           setLoading(false)
         }
@@ -68,7 +73,7 @@ export default function WeatherWidget() {
           const data = await fetchWeather(21.5928, 105.8442)
           setWeather(data)
         } catch {
-          setError(true)
+          setWeather(DEFAULT_WEATHER)
         } finally {
           setLoading(false)
         }

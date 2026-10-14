@@ -113,11 +113,11 @@ export default function BlogPage() {
                   <div className="grid lg:grid-cols-2">
                     <div className="relative h-64 lg:h-auto overflow-hidden">
                       <img src={BLOG_POSTS[0].image} alt={BLOG_POSTS[0].title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         loading="eager" decoding="async" />
                       <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 rounded-full text-xs font-bold text-white"
-                          style={{ background: 'linear-gradient(135deg, #6366f1, #ec4899)' }}>
+                        <span className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
+                          style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
                           Featured
                         </span>
                       </div>
@@ -126,12 +126,12 @@ export default function BlogPage() {
                       <div className="flex flex-wrap gap-2 mb-4">
                         {BLOG_POSTS[0].tags.slice(0, 3).map((tag) => (
                           <span key={tag} className="px-2.5 py-1 rounded-lg text-xs font-medium"
-                            style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1', border: '1px solid rgba(99,102,241,0.2)' }}>
+                            style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <h2 className="text-xl font-bold mb-3 group-hover:text-indigo-500 transition-colors"
+                      <h2 className="text-xl font-bold mb-3 group-hover:text-teal-400 transition-colors"
                         style={{ color: 'var(--color-text-primary)' }}>{BLOG_POSTS[0].title}</h2>
                       <p className="mb-6 leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>{BLOG_POSTS[0].excerpt}</p>
                       <div className="flex items-center gap-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>
@@ -154,7 +154,7 @@ export default function BlogPage() {
                       <motion.div whileHover={{ x: 4 }} className="card overflow-hidden group flex gap-0 flex-col sm:flex-row">
                         <div className="sm:w-48 h-40 sm:h-auto overflow-hidden flex-shrink-0">
                           <img src={post.image} alt={post.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                             loading="lazy" decoding="async" />
                         </div>
                         <div className="p-5 flex flex-col justify-between flex-1">
@@ -162,12 +162,12 @@ export default function BlogPage() {
                             <div className="flex flex-wrap gap-1.5 mb-2">
                               {post.tags.slice(0, 2).map((tag) => (
                                 <span key={tag} className="px-2 py-0.5 rounded-md text-xs font-medium"
-                                  style={{ background: 'rgba(99,102,241,0.08)', color: '#6366f1' }}>
+                                  style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6' }}>
                                   {tag}
                                 </span>
                               ))}
                             </div>
-                            <h3 className="font-bold mb-2 group-hover:text-indigo-500 transition-colors line-clamp-2"
+                            <h3 className="font-bold mb-2 group-hover:text-teal-400 transition-colors line-clamp-2"
                               style={{ color: 'var(--color-text-primary)' }}>{post.title}</h3>
                             <p className="text-sm leading-relaxed line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>{post.excerpt}</p>
                           </div>
@@ -176,7 +176,7 @@ export default function BlogPage() {
                               <span className="flex items-center gap-1"><Calendar size={12} />{post.date}</span>
                               <span className="flex items-center gap-1"><Clock size={12} />{post.readTime} {t('blog.min_read')}</span>
                             </div>
-                            <span className="text-xs font-semibold flex items-center gap-1 text-indigo-500">
+                            <span className="text-xs font-semibold flex items-center gap-1 text-teal-400">
                               {t('blog.read_more')} <ArrowRight size={12} />
                             </span>
                           </div>
@@ -198,7 +198,7 @@ export default function BlogPage() {
                         page === p ? 'text-white shadow-lg' : ''
                       }`}
                       style={page === p
-                        ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }
+                        ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
                         : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                       }
                     >
@@ -213,7 +213,7 @@ export default function BlogPage() {
               <FadeIn>
                 <div className="card p-5 sticky top-24">
                   <div className="flex items-center gap-2 mb-4">
-                    <Tag size={16} className="text-indigo-500" />
+                    <Tag size={16} className="text-teal-400" />
                     <h3 className="font-bold" style={{ color: 'var(--color-text-primary)' }}>{t('blog.tags')}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -222,7 +222,7 @@ export default function BlogPage() {
                       id="blog-tag-all"
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${!selectedTag ? 'text-white' : ''}`}
                       style={!selectedTag
-                        ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }
+                        ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
                         : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                       }
                     >
@@ -235,7 +235,7 @@ export default function BlogPage() {
                         id={`blog-tag-${tag.toLowerCase().replace(/\//g, '-')}`}
                         className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${selectedTag === tag ? 'text-white' : ''}`}
                         style={selectedTag === tag
-                          ? { background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }
+                          ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
                           : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                         }
                       >

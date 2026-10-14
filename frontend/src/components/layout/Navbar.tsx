@@ -46,7 +46,7 @@ export default function Navbar() {
         <NavLink to="/" className="flex items-center gap-2 flex-shrink-0">
           <LogoSVG className="w-8 h-8" />
           <span className="font-bold text-lg tracking-tight hidden sm:block" style={{ color: 'var(--color-text-primary)' }}>
-            Profile<span className="gradient-text">Plus</span>
+            Minh Hieu <span className="gradient-text">Dev</span>
           </span>
         </NavLink>
 
@@ -101,7 +101,7 @@ export default function Navbar() {
             <img
               src={avatarImg}
               alt="Phạm Minh Hiếu avatar"
-              className="w-8 h-8 rounded-full object-cover ring-2 ring-indigo-500/30 hover:ring-indigo-500/70 transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-teal-500/40 hover:ring-teal-500/80 transition-all cursor-pointer"
             />
           </NavLink>
 

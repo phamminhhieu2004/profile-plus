@@ -40,7 +40,7 @@ export default function BlogDetailPage() {
       <div className="pt-24 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm mb-8 transition-colors hover:text-indigo-500"
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm mb-8 transition-colors hover:text-teal-400"
               style={{ color: 'var(--color-text-secondary)' }} id="blog-detail-back">
               <ArrowLeft size={16} />
               {t('blog.all_posts')}
@@ -51,7 +51,7 @@ export default function BlogDetailPage() {
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
                 <span key={tag} className="px-3 py-1 rounded-lg text-xs font-semibold"
-                  style={{ background: 'rgba(99,102,241,0.1)', color: '#6366f1', border: '1px solid rgba(99,102,241,0.2)' }}>
+                  style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
                   {tag}
                 </span>
               ))}
@@ -60,7 +60,7 @@ export default function BlogDetailPage() {
             <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>
               <span className="flex items-center gap-1.5"><Calendar size={14} />{post.date}</span>
               <span className="flex items-center gap-1.5"><Clock size={14} />{post.readTime} {t('blog.min_read')}</span>
-              <button onClick={handleShare} className="flex items-center gap-1.5 transition-colors hover:text-indigo-500 ml-auto" id="blog-share">
+              <button onClick={handleShare} className="flex items-center gap-1.5 transition-colors hover:text-teal-400 ml-auto" id="blog-share">
                 <Share2 size={14} /> Share
               </button>
             </div>
@@ -68,7 +68,7 @@ export default function BlogDetailPage() {
 
           <FadeIn delay={0.1} className="mb-10">
             <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid var(--color-border)' }}>
-              <img src={post.image} alt={post.title} className="w-full h-72 object-cover" loading="eager" decoding="async" />
+              <img src={post.image} alt={post.title} className="w-full h-80 sm:h-96 object-cover object-top" loading="eager" decoding="async" />
             </div>
           </FadeIn>
 
@@ -97,11 +97,11 @@ export default function BlogDetailPage() {
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-2 mb-12">
               <span className="flex items-center gap-1.5 text-sm font-medium mr-2" style={{ color: 'var(--color-text-secondary)' }}>
-                <Tag size={14} /> Tags:
+                <Tag size={14} className="text-teal-400" /> Tags:
               </span>
               {post.tags.map((tag) => (
                 <Link key={tag} to={`/blog?tag=${tag}`}
-                  className="px-3 py-1 rounded-lg text-xs font-medium transition-all hover:border-indigo-500/50"
+                  className="px-3 py-1 rounded-lg text-xs font-medium transition-all hover:border-teal-500/50"
                   style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-secondary)' }}>
                   {tag}
                 </Link>
@@ -116,13 +116,13 @@ export default function BlogDetailPage() {
                 {related.map((p) => (
                   <Link key={p.id} to={`/blog/${p.id}`} id={`related-post-${p.id}`}>
                     <motion.div whileHover={{ y: -4 }} className="card overflow-hidden group">
-                      <div className="h-32 overflow-hidden">
+                      <div className="h-36 overflow-hidden">
                         <img src={p.image} alt={p.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
                           loading="lazy" decoding="async" />
                       </div>
                       <div className="p-4">
-                        <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-indigo-500 transition-colors"
+                        <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-teal-400 transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}>{p.title}</h3>
                         <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{p.date} · {p.readTime} {t('blog.min_read')}</p>
                       </div>
