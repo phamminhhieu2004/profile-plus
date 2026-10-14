@@ -34,6 +34,18 @@ Thumbs.db
 .codeatlas/
 *.swp
 *.swo
+workspace.xml
+junitvmwatcher*.properties
+build.properties
+
+# Build & Test artifacts
+classes_gen
+source_gen
+source_gen.caches
+test_gen
+test_gen.caches
+TEST-*.xml
+junit*.properties
 
 # Docker
 .dockerignore
