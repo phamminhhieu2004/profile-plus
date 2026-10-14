@@ -1,4 +1,4 @@
-# Profile Plus — Phạm Minh Hiếu Personal Portfolio Website
+# Minh Hieu Dev — Phạm Minh Hiếu Personal Portfolio Website
 
 [![CI/CD Pipeline](https://github.com/phamminhhieu2004/profile-plus/actions/workflows/ci.yml/badge.svg)](https://github.com/phamminhhieu2004/profile-plus/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -7,7 +7,7 @@
 [![TailwindCSS](https://img.shields.io/badge/Styling-Tailwind%20CSS%20v4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Docker](https://img.shields.io/badge/Deployment-Docker%20Compose-2496ED?logo=docker)](https://www.docker.com/)
 
-**Profile Plus** là website cá nhân full-stack cao cấp, hiện đại và chuẩn mực dành cho **Phạm Minh Hiếu** — Backend Developer & Sinh viên ngành Kỹ thuật Ô tô tại Đại học Công nghệ Thông tin và Truyền thông (ICTU), Thái Nguyên.
+**Minh Hieu Dev** là website cá nhân full-stack cao cấp, hiện đại và chuẩn mực dành cho **Phạm Minh Hiếu** — Backend Developer & Sinh viên ngành Kỹ thuật Ô tô tại Đại học Công nghệ Thông tin và Truyền thông (ICTU), Thái Nguyên.
 
 ---
 
@@ -168,6 +168,7 @@ docker-compose up --build -d
 - **Quê quán**: Phổ Yên, Thái Nguyên, Việt Nam
 - **Học vấn**: Kỹ thuật Ô tô — Đại học Công nghệ Thông tin và Truyền thông (ICTU) (2022 – Hiện tại)
 - **GitHub**: [@phamminhhieu2004](https://github.com/phamminhhieu2004)
+- **Instagram**: [@_.pmh.2004._](https://www.instagram.com/_.pmh.2004._/)
 - **Facebook**: [Phạm Minh Hiếu](https://www.facebook.com/goodboy.real.minhhieu)
 - **TikTok**: [@goodboy.real_2004](https://www.tiktok.com/@goodboy.real_2004)
 - **Telegram**: [@pmh_2004](https://t.me/pmh_2004)
