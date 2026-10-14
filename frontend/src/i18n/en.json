@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "certificates": "Certificates",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Pham Minh Hieu",
+    "taglines": ["Backend Developer", "Automotive Engineer", "AI Enthusiast", "Music Producer"],
+    "description": "Bridging the world of Automotive Technology and Software Engineering. Building robust backend systems and exploring artificial intelligence.",
+    "cta_primary": "View Projects",
+    "cta_secondary": "Get in Touch",
+    "available": "Open to work"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "The story of a technology-passionate engineer",
+    "bio": "A student combining passion for automotive engineering with modern software skills. I build robust backend systems with Spring Boot, FastAPI & Node.js — on a foundation of automotive knowledge, electronic diagnostics, and EV/Hybrid technology.",
+    "education": "Education",
+    "experience": "Experience",
+    "interests": "Interests",
+    "interests_list": ["Backend Programming", "Automotive Engineering", "Artificial Intelligence", "Music Production", "Electric Vehicle Technology"],
+    "download_cv": "Download CV",
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Completed",
+      "certificates": "Certificates",
+      "technologies": "Technologies"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Technologies and skills I work with",
+    "automotive": "Automotive Engineering",
+    "software": "Programming & Software"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "What I've built",
+    "view_project": "View Project",
+    "view_code": "View Code",
+    "all": "All",
+    "backend": "Backend",
+    "ai": "AI/ML",
+    "automotive": "Automotive"
+  },
+  "certificates": {
+    "title": "Certificates",
+    "subtitle": "Certified by Google Gemini AI",
+    "zoom_hint": "Click to view details"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Sharing knowledge and experience",
+    "read_more": "Read More",
+    "all_posts": "All Posts",
+    "tags": "Topics",
+    "min_read": "min read",
+    "no_posts": "No posts yet"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's connect",
+    "name": "Full Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!",
+    "error": "Something went wrong, please try again.",
+    "social": "Social Media",
+    "phone": "Phone",
+    "location": "Location",
+    "placeholders": {
+      "name": "John Doe",
+      "email": "example@email.com",
+      "subject": "Project Collaboration",
+      "message": "Hi Hieu, I'd like to..."
+    }
+  },
+  "chatbot": {
+    "title": "Ask about Hieu",
+    "placeholder": "Ask me anything...",
+    "greeting": "Hello! I'm the AI assistant for Pham Minh Hieu. What would you like to know about me?",
+    "send": "Send",
+    "powered_by": "Powered by Gemini AI"
+  },
+  "weather": {
+    "loading": "Loading weather...",
+    "error": "Cannot load weather",
+    "feels_like": "Feels like",
+    "humidity": "Humidity"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "made_with": "Made with ❤️ by Pham Minh Hieu"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

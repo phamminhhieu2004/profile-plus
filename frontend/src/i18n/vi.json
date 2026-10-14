@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "portfolio": "Dự án",
+    "certificates": "Chứng chỉ",
+    "blog": "Blog",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "greeting": "Xin chào, tôi là",
+    "name": "Phạm Minh Hiếu",
+    "taglines": ["Backend Developer", "Kỹ thuật Ô tô", "AI Enthusiast", "Music Producer"],
+    "description": "Kết hợp giữa thế giới Công nghệ Ô tô và Lập trình Phần mềm. Xây dựng hệ thống backend vững chắc và khám phá trí tuệ nhân tạo.",
+    "cta_primary": "Xem dự án",
+    "cta_secondary": "Liên hệ ngay",
+    "available": "Đang tìm kiếm cơ hội"
+  },
+  "about": {
+    "title": "Về tôi",
+    "subtitle": "Câu chuyện của một kỹ sư đam mê công nghệ",
+    "bio": "Sinh viên kết hợp đam mê kỹ thuật ô tô với kỹ năng lập trình phần mềm hiện đại. Tôi xây dựng các hệ thống backend vững chắc với Spring Boot, FastAPI & Node.js — trên nền tảng kiến thức kỹ thuật ô tô, chẩn đoán điện tử và công nghệ xe điện/hybrid.",
+    "education": "Học vấn",
+    "experience": "Kinh nghiệm",
+    "interests": "Sở thích",
+    "interests_list": ["Lập trình Backend", "Kỹ thuật Ô tô", "Trí tuệ nhân tạo", "Sản xuất âm nhạc", "Công nghệ xe điện"],
+    "download_cv": "Tải CV",
+    "stats": {
+      "years": "Năm kinh nghiệm",
+      "projects": "Dự án hoàn thành",
+      "certificates": "Chứng chỉ",
+      "technologies": "Công nghệ"
+    }
+  },
+  "skills": {
+    "title": "Kỹ năng",
+    "subtitle": "Các công nghệ và kỹ năng tôi sử dụng",
+    "automotive": "Kỹ thuật Ô tô",
+    "software": "Lập trình & Phần mềm"
+  },
+  "portfolio": {
+    "title": "Dự án",
+    "subtitle": "Những gì tôi đã xây dựng",
+    "view_project": "Xem dự án",
+    "view_code": "Xem code",
+    "all": "Tất cả",
+    "backend": "Backend",
+    "ai": "AI/ML",
+    "automotive": "Ô tô"
+  },
+  "certificates": {
+    "title": "Chứng chỉ",
+    "subtitle": "Chứng nhận từ Google Gemini AI",
+    "zoom_hint": "Click để xem chi tiết"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Chia sẻ kiến thức và kinh nghiệm",
+    "read_more": "Đọc thêm",
+    "all_posts": "Tất cả bài viết",
+    "tags": "Chủ đề",
+    "min_read": "phút đọc",
+    "no_posts": "Chưa có bài viết nào"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "subtitle": "Hãy kết nối với tôi",
+    "name": "Họ và tên",
+    "email": "Email",
+    "subject": "Chủ đề",
+    "message": "Nội dung",
+    "send": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "success": "Tin nhắn đã được gửi thành công!",
+    "error": "Có lỗi xảy ra, vui lòng thử lại.",
+    "social": "Mạng xã hội",
+    "phone": "Số điện thoại",
+    "location": "Địa chỉ",
+    "placeholders": {
+      "name": "Nguyễn Văn A",
+      "email": "example@email.com",
+      "subject": "Hợp tác dự án",
+      "message": "Xin chào Hiếu, tôi muốn..."
+    }
+  },
+  "chatbot": {
+    "title": "Hỏi về Hiếu",
+    "placeholder": "Hỏi về tôi...",
+    "greeting": "Xin chào! Tôi là AI assistant của Phạm Minh Hiếu. Bạn muốn biết gì về tôi?",
+    "send": "Gửi",
+    "powered_by": "Powered by Gemini AI"
+  },
+  "weather": {
+    "loading": "Đang tải thời tiết...",
+    "error": "Không thể tải thời tiết",
+    "feels_like": "Cảm giác",
+    "humidity": "Độ ẩm"
+  },
+  "footer": {
+    "rights": "Tất cả quyền được bảo lưu.",
+    "made_with": "Làm với ❤️ bởi Phạm Minh Hiếu"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối"
+  }
+}

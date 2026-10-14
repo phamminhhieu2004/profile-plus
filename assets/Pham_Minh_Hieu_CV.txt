@@ -1,0 +1,80 @@
+================================================================================
+                           HỒ SƠ CÁ NHÂN / RESUME
+                              PHẠM MINH HIẾU
+      Công Nghệ Kỹ Thuật Ô Tô  |  Lập Trình Viên Backend & Phần Mềm
+================================================================================
+
+1. THÔNG TIN CÁ NHÂN (PERSONAL INFORMATION)
+--------------------------------------------------------------------------------
+- Họ và tên          : Phạm Minh Hiếu
+- Năm sinh           : 2004
+- Số điện thoại      : 0989 770 905
+- Địa chỉ            : Thái Nguyên, Việt Nam
+- Telegram           : @pmh_2004
+- GitHub             : https://github.com/phamminhhieu2004
+- Facebook           : https://www.facebook.com/goodboy.real.minhhieu
+- TikTok             : https://www.tiktok.com/@goodboy.real_2004
+- Chuyên ngành chính : Công nghệ Kỹ thuật Ô tô
+- Ngôn ngữ           : Tiếng Việt (Bản ngữ), Tiếng Anh
+- Trạng thái         : Đang tìm kiếm cơ hội (Open to work / Available)
+
+2. GIỚI THIỆU BẢN THÂN (ABOUT ME)
+--------------------------------------------------------------------------------
+Sinh viên kết hợp đam mê kỹ thuật ô tô với kỹ năng lập trình phần mềm hiện đại.
+Kết hợp giữa thế giới Công nghệ Ô tô và Lập trình Phần mềm. Tôi xây dựng các
+hệ thống backend vững chắc với Spring Boot, FastAPI & Node.js — trên nền tảng
+kiến thức kỹ thuật ô tô, chẩn đoán điện tử và công nghệ xe điện/hybrid.
+
+3. HỌC VẤN (EDUCATION)
+--------------------------------------------------------------------------------
+* 2022 - Hiện tại : Trường Đại học Công nghệ Thông tin và Truyền thông (ICTU)
+  - Chuyên ngành  : Công nghệ Kỹ thuật Ô tô
+  - Nội dung      : Hệ thống ô tô, quản lý động cơ, chẩn đoán xe qua cổng OBD,
+                    lập trình và hiệu chỉnh ECU, công nghệ xe điện hóa (EV) và
+                    xe Hybrid hiện đại, song song với phát triển phần mềm backend.
+
+* 2019 - 2022     : Trường THPT Phổ Yên (Thái Nguyên)
+  - Lớp CBA5
+
+4. KINH NGHIỆM LÀM VIỆC & DỰ ÁN (WORK EXPERIENCE & PROJECTS)
+--------------------------------------------------------------------------------
+* 2022 - Hiện tại : Lập trình Backend (Dự án cá nhân & Freelance)
+  - Thiết kế và phát triển RESTful API, dịch vụ backend hiệu năng cao sử dụng
+    Spring Boot, FastAPI và Node.js.
+  - Tích hợp và xử lý dữ liệu ô tô, kết nối dữ liệu phần cứng với phần mềm.
+  - Nghiên cứu và áp dụng Machine Learning với TensorFlow trong nhận diện và
+    phân tích dữ liệu.
+  - Hoạt động sáng tạo âm nhạc: Producer & DJ độc lập.
+
+* 2020 - 2021     : Dịch vụ Mạng Xã Hội (Freelance)
+  - Cung cấp dịch vụ tối ưu tương tác và hỗ trợ bảo mật, mở khóa tài khoản
+    mạng xã hội.
+
+5. KỸ NĂNG CHUYÊN MÔN (TECHNICAL SKILLS)
+--------------------------------------------------------------------------------
+[A] LĨNH VỰC CÔNG NGHỆ Ô TÔ:
+  - Vehicle Systems (Hệ thống cơ khí, truyền động, gầm máy)      : 85%
+  - ECU / OBD Diagnostics (Chẩn đoán lỗi, phân tích tín hiệu ECU) : 80%
+  - EV / Hybrid Tech (Công nghệ xe điện, pin & truyền động Hybrid): 78%
+  - Quản lý động cơ và hệ thống điện tử trên xe hiện đại.
+
+[B] LẬP TRÌNH & CÔNG NGHỆ PHẦN MỀM:
+  - Spring Boot (Java Backend, REST API, Kiến trúc hệ thống)     : 95%
+  - FastAPI (Python Backend, Xử lý bất đồng bộ, API hiệu năng)    : 90%
+  - TensorFlow (Machine Learning, Trí tuệ nhân tạo)              : 90%
+  - Node.js (JavaScript Runtime, Express, Dịch vụ mạng)          : 85%
+  - HTML5 & Web Layout                                           : 85%
+  - CSS3 / Bootstrap (Thiết kế giao diện responsive)             : 80%
+
+6. THÔNG TIN LIÊN HỆ (CONTACT)
+--------------------------------------------------------------------------------
+Tôi luôn sẵn sàng kết nối, học hỏi và hợp tác trong các dự án công nghệ:
+- Số điện thoại / Zalo : 0989 770 905
+- Telegram             : @pmh_2004
+- GitHub               : https://github.com/phamminhhieu2004
+- Facebook             : https://www.facebook.com/goodboy.real.minhhieu
+- TikTok               : https://www.tiktok.com/@goodboy.real_2004
+
+================================================================================
+             Cảm ơn quý đơn vị / đối tác đã xem hồ sơ của tôi!
+================================================================================
