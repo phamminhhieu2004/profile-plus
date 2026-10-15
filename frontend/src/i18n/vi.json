@@ -11,8 +11,8 @@
   "hero": {
     "greeting": "Xin chào, tôi là",
     "name": "Phạm Minh Hiếu",
-    "taglines": ["Backend Developer", "Kỹ thuật Ô tô", "AI Enthusiast", "Music Producer"],
-    "description": "Kết hợp giữa thế giới Công nghệ Ô tô và Lập trình Phần mềm. Xây dựng hệ thống backend vững chắc và khám phá trí tuệ nhân tạo.",
+    "taglines": ["Việt Nam muôn năm", "Hồ Chí Minh muôn năm", "Hoàng Sa - Trường Sa là của Việt Nam", "Đời đời nhớ ơn các anh hùng liệt sĩ"],
+    "description": "Bà nội tao là bà mẹ Việt Nam anh hùng, mưa bom bão đạn thời chiến còn không sợ. Thì tao sợ gì việc phải nhập ngũ để bảo vệ tổ quốc ở thời bình.",
     "cta_primary": "Xem dự án",
     "cta_secondary": "Liên hệ ngay",
     "available": "Đang tìm kiếm cơ hội"
@@ -45,9 +45,9 @@
     "view_project": "Xem dự án",
     "view_code": "Xem code",
     "all": "Tất cả",
-    "backend": "Backend",
-    "ai": "AI/ML",
-    "automotive": "Ô tô"
+    "fullstack": "Full-stack",
+    "web": "Web Apps",
+    "desktop": "Desktop / C#"
   },
   "certificates": {
     "title": "Chứng chỉ",

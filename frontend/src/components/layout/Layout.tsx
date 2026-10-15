@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import ChatbotWidget from '../chatbot/ChatbotWidget'
 import WeatherWidget from '../weather/WeatherWidget'
+import BackgroundMusic from '../audio/BackgroundMusic'
 
 interface LayoutProps {
   children: ReactNode
@@ -18,6 +19,8 @@ export default function Layout({ children }: LayoutProps) {
       <Footer />
       <WeatherWidget />
       <ChatbotWidget />
+      <BackgroundMusic />
     </div>
   )
 }
+

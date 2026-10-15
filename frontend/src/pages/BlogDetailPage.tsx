@@ -40,7 +40,7 @@ export default function BlogDetailPage() {
       <div className="pt-24 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn>
-            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm mb-8 transition-colors hover:text-teal-400"
+            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm mb-8 transition-colors hover:text-red-500"
               style={{ color: 'var(--color-text-secondary)' }} id="blog-detail-back">
               <ArrowLeft size={16} />
               {t('blog.all_posts')}
@@ -51,7 +51,7 @@ export default function BlogDetailPage() {
             <div className="flex flex-wrap gap-2 mb-4">
               {post.tags.map((tag) => (
                 <span key={tag} className="px-3 py-1 rounded-lg text-xs font-semibold"
-                  style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
+                  style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
                   {tag}
                 </span>
               ))}
@@ -60,7 +60,7 @@ export default function BlogDetailPage() {
             <div className="flex flex-wrap items-center gap-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>
               <span className="flex items-center gap-1.5"><Calendar size={14} />{post.date}</span>
               <span className="flex items-center gap-1.5"><Clock size={14} />{post.readTime} {t('blog.min_read')}</span>
-              <button onClick={handleShare} className="flex items-center gap-1.5 transition-colors hover:text-teal-400 ml-auto" id="blog-share">
+              <button onClick={handleShare} className="flex items-center gap-1.5 transition-colors hover:text-red-500 ml-auto" id="blog-share">
                 <Share2 size={14} /> Share
               </button>
             </div>
@@ -97,11 +97,11 @@ export default function BlogDetailPage() {
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-2 mb-12">
               <span className="flex items-center gap-1.5 text-sm font-medium mr-2" style={{ color: 'var(--color-text-secondary)' }}>
-                <Tag size={14} className="text-teal-400" /> Tags:
+                <Tag size={14} className="text-red-500" /> Tags:
               </span>
               {post.tags.map((tag) => (
                 <Link key={tag} to={`/blog?tag=${tag}`}
-                  className="px-3 py-1 rounded-lg text-xs font-medium transition-all hover:border-teal-500/50"
+                  className="px-3 py-1 rounded-lg text-xs font-medium transition-all hover:border-red-500/50"
                   style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)', color: 'var(--color-text-secondary)' }}>
                   {tag}
                 </Link>
@@ -122,7 +122,7 @@ export default function BlogDetailPage() {
                           loading="lazy" decoding="async" />
                       </div>
                       <div className="p-4">
-                        <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-teal-400 transition-colors"
+                        <h3 className="font-semibold text-sm mb-1 line-clamp-2 group-hover:text-red-500 transition-colors"
                           style={{ color: 'var(--color-text-primary)' }}>{p.title}</h3>
                         <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{p.date} · {p.readTime} {t('blog.min_read')}</p>
                       </div>

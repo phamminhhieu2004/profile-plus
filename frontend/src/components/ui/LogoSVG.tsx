@@ -8,27 +8,14 @@ export default function LogoSVG({ className = 'w-8 h-8' }: LogoSVGProps) {
       viewBox="0 0 40 40"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={`rounded-lg overflow-hidden shadow-sm ${className}`}
     >
-      <defs>
-        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#14b8a6" />
-          <stop offset="50%" stopColor="#06b6d4" />
-          <stop offset="100%" stopColor="#f472b6" />
-        </linearGradient>
-      </defs>
-      <rect width="40" height="40" rx="10" fill="url(#logo-gradient)" />
-      <path
-        d="M10 28V12L20 8L30 12V20L20 32L10 28Z"
-        fill="white"
-        opacity="0.9"
+      {/* Nền cờ đỏ sao vàng Việt Nam */}
+      <rect width="40" height="40" rx="9" fill="#DA251D" />
+      <polygon
+        points="20,7.5 22.81,16.14 31.89,16.14 24.54,21.48 27.35,30.11 20,24.77 12.65,30.11 15.46,21.48 8.11,16.14 17.19,16.14"
+        fill="#FFFF00"
       />
-      <path
-        d="M20 8L30 12V20L20 26V8Z"
-        fill="white"
-        opacity="0.5"
-      />
-      <circle cx="20" cy="18" r="4" fill="url(#logo-gradient)" />
     </svg>
   )
 }

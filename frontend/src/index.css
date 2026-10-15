@@ -2,9 +2,9 @@
 
 @layer base {
   :root {
-    --color-primary-from: #0d9488;
-    --color-primary-mid: #06b6d4;
-    --color-primary-to: #f472b6;
+    --color-primary-from: #dc2626;
+    --color-primary-mid: #ea580c;
+    --color-primary-to: #eab308;
     --color-bg: #ffffff;
     --color-surface: #f8fafc;
     --color-border: #e2e8f0;
@@ -13,13 +13,13 @@
     --color-text-muted: #94a3b8;
     --radius-card: 16px;
     --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-    --shadow-glow: 0 0 35px rgba(20, 184, 166, 0.25);
+    --shadow-glow: 0 0 35px rgba(220, 38, 38, 0.25);
   }
 
   .dark {
-    --color-primary-from: #14b8a6;
-    --color-primary-mid: #06b6d4;
-    --color-primary-to: #f472b6;
+    --color-primary-from: #ef4444;
+    --color-primary-mid: #f97316;
+    --color-primary-to: #facc15;
     --color-bg: #09090b;
     --color-surface: #12151b;
     --color-border: #1e2633;
@@ -27,7 +27,7 @@
     --color-text-secondary: #94a3b8;
     --color-text-muted: #64748b;
     --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 40px rgba(20, 184, 166, 0.3);
+    --shadow-glow: 0 0 40px rgba(239, 68, 68, 0.3);
   }
 
   * {
@@ -48,14 +48,14 @@
   }
 
   ::selection {
-    background-color: rgba(20, 184, 166, 0.3);
+    background-color: rgba(220, 38, 38, 0.3);
     color: var(--color-text-primary);
   }
 }
 
 @layer components {
   .gradient-text {
-    background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 45%, #f472b6 100%);
+    background: linear-gradient(135deg, #ef4444 0%, #f97316 45%, #eab308 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -73,7 +73,7 @@
     inset: 0;
     border-radius: var(--radius-card);
     padding: 1px;
-    background: linear-gradient(135deg, #14b8a6, #06b6d4, #f472b6);
+    background: linear-gradient(135deg, #ef4444, #f97316, #eab308);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -101,7 +101,7 @@
     font-weight: 600;
     font-size: 15px;
     color: white;
-    background: linear-gradient(135deg, #0d9488, #06b6d4);
+    background: linear-gradient(135deg, #dc2626, #ea580c);
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
@@ -111,7 +111,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #06b6d4, #f472b6);
+    background: linear-gradient(135deg, #ea580c, #eab308);
     opacity: 0;
     transition: opacity 0.2s ease;
   }
@@ -122,7 +122,7 @@
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(20, 184, 166, 0.45);
+    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.45);
   }
 
   .btn-primary > * {
@@ -147,9 +147,9 @@
 
   .btn-secondary:hover {
     transform: translateY(-2px);
-    border-color: #14b8a6;
-    color: #14b8a6;
-    background: rgba(20, 184, 166, 0.08);
+    border-color: #dc2626;
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.08);
   }
 
   .card {
@@ -162,7 +162,7 @@
   .card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-glow);
-    border-color: rgba(20, 184, 166, 0.35);
+    border-color: rgba(220, 38, 38, 0.35);
   }
 
   .section-title {
@@ -195,7 +195,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(135deg, #14b8a6, #f472b6);
+    background: linear-gradient(135deg, #dc2626, #eab308);
     border-radius: 2px;
     transition: width 0.2s ease;
   }
@@ -220,7 +220,7 @@
   .progress-bar-fill {
     height: 100%;
     border-radius: 100px;
-    background: linear-gradient(90deg, #14b8a6, #06b6d4, #f472b6);
+    background: linear-gradient(90deg, #dc2626, #ea580c, #eab308);
     transition: width 1s ease;
   }
 

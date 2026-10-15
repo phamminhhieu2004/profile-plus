@@ -48,7 +48,7 @@ export default function Footer() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-sm transition-colors hover:text-teal-400"
+                    className="text-sm transition-colors hover:text-red-500"
                     style={{ color: 'var(--color-text-secondary)' }}
                   >
                     {t(link.key)}
@@ -70,7 +70,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`p-2.5 rounded-xl border border-[var(--color-border)] transition-all hover:border-teal-500/50 hover:bg-teal-500/10 ${color}`}
+                  className={`p-2.5 rounded-xl border border-[var(--color-border)] transition-all hover:border-red-500/50 hover:bg-red-500/10 ${color}`}
                   style={{ color: 'var(--color-text-secondary)' }}
                 >
                   <Icon size={18} />

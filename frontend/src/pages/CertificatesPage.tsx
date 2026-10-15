@@ -56,7 +56,7 @@ export default function CertificatesPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
-              style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
+              style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
               <Award size={16} />
               Google Certified
             </div>
@@ -77,7 +77,7 @@ export default function CertificatesPage() {
                   onKeyDown={(e) => e.key === 'Enter' && openLightbox(index)}
                   aria-label={`View ${cert.title}`}
                 >
-                  <div className="relative h-52 overflow-hidden bg-gradient-to-br from-teal-500/10 to-pink-500/10 dark:from-teal-950/20 dark:to-pink-950/20">
+                  <div className="relative h-52 overflow-hidden bg-gradient-to-br from-red-500/10 to-amber-500/10 dark:from-red-950/20 dark:to-amber-950/20">
                     <img
                       src={cert.image}
                       alt={cert.title}
@@ -96,7 +96,7 @@ export default function CertificatesPage() {
                   <div className="p-5">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-6 h-6 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm"
-                        style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
+                        style={{ background: 'linear-gradient(135deg, #dc2626, #facc15)' }}>
                         <span className="text-white text-xs font-bold">G</span>
                       </div>
                       <span className="text-xs font-semibold" style={{ color: 'var(--color-text-muted)' }}>{cert.issuer} · {cert.year}</span>
@@ -112,7 +112,7 @@ export default function CertificatesPage() {
           <FadeIn className="mt-16 text-center">
             <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl"
               style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}>
-              <Award size={20} className="text-teal-400" />
+              <Award size={20} className="text-amber-500" />
               <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                 Tất cả chứng chỉ được cấp bởi <strong style={{ color: 'var(--color-text-primary)' }}>Google</strong> thông qua chương trình Gemini AI Certification
               </p>

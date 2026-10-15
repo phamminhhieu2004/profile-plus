@@ -125,7 +125,7 @@ export default function ContactPage() {
                             border: '1px solid var(--color-border)',
                             color: 'var(--color-text-primary)',
                           }}
-                          onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                          onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
                           onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                         />
                       </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                             border: '1px solid var(--color-border)',
                             color: 'var(--color-text-primary)',
                           }}
-                          onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                          onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
                           onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                         />
                       </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                           border: '1px solid var(--color-border)',
                           color: 'var(--color-text-primary)',
                         }}
-                        onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                        onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
                         onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                       />
                     </div>
@@ -194,7 +194,7 @@ export default function ContactPage() {
                           border: '1px solid var(--color-border)',
                           color: 'var(--color-text-primary)',
                         }}
-                        onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                        onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
                         onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                       />
                     </div>
@@ -231,13 +231,13 @@ export default function ContactPage() {
                   <div className="space-y-4">
                     {contactInfo.map(({ icon: Icon, label, value, href }) => (
                       <div key={label} className="flex items-center gap-3">
-                        <div className="p-2.5 rounded-xl flex-shrink-0" style={{ background: 'rgba(20,184,166,0.1)' }}>
-                          <Icon size={16} className="text-teal-400" />
+                        <div className="p-2.5 rounded-xl flex-shrink-0" style={{ background: 'rgba(220,38,38,0.12)' }}>
+                          <Icon size={16} className="text-red-500" />
                         </div>
                         <div>
                           <p className="text-xs mb-0.5" style={{ color: 'var(--color-text-muted)' }}>{label}</p>
                           {href ? (
-                            <a href={href} className="text-sm font-medium transition-colors hover:text-teal-400"
+                            <a href={href} className="text-sm font-medium transition-colors hover:text-red-500"
                               style={{ color: 'var(--color-text-primary)' }}>{value}</a>
                           ) : (
                             <p className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>{value}</p>
@@ -261,7 +261,7 @@ export default function ContactPage() {
                           rel="noopener noreferrer"
                           whileHover={{ x: 6, scale: 1.02 }}
                           id={`social-${label.toLowerCase()}`}
-                          className="flex items-center gap-3 p-3 rounded-xl transition-all hover:border-teal-500/40"
+                          className="flex items-center gap-3 p-3 rounded-xl transition-all hover:border-red-500/40"
                           style={{ border: '1px solid var(--color-border)' }}
                         >
                           <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -281,9 +281,9 @@ export default function ContactPage() {
 
               <FadeIn delay={0.3}>
                 <div className="card p-5 text-center"
-                  style={{ background: 'linear-gradient(135deg, rgba(20,184,166,0.1), rgba(244,114,182,0.1))' }}>
+                  style={{ background: 'linear-gradient(135deg, rgba(220,38,38,0.12), rgba(234,179,8,0.1))' }}>
                   <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center shadow-md"
-                    style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
+                    style={{ background: 'linear-gradient(135deg, #dc2626, #eab308)' }}>
                     <span className="text-white text-xl">🚗</span>
                   </div>
                   <p className="text-sm font-semibold mb-1" style={{ color: 'var(--color-text-primary)' }}>Automotive + Software</p>

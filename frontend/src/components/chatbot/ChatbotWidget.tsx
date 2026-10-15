@@ -208,7 +208,7 @@ export default function ChatbotWidget() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl text-white"
-        style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4, #f472b6)' }}
+        style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c, #eab308)' }}
         aria-label="Toggle chatbot"
         id="chatbot-toggle"
       >
@@ -224,7 +224,7 @@ export default function ChatbotWidget() {
           )}
         </AnimatePresence>
         {!chatbotOpen && (
-          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-teal-400 border-2 border-[var(--color-bg)] animate-pulse" />
+          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-yellow-400 border-2 border-[var(--color-bg)] animate-pulse" />
         )}
       </motion.button>
 
@@ -243,7 +243,7 @@ export default function ChatbotWidget() {
           >
             <div
               className="flex items-center justify-between px-4 py-3"
-              style={{ background: 'linear-gradient(135deg, #0d9488, #06b6d4, #f472b6)', color: 'white' }}
+              style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c, #eab308)', color: 'white' }}
             >
               <div className="flex items-center gap-2">
                 <Bot size={20} />
@@ -264,8 +264,8 @@ export default function ChatbotWidget() {
                     className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 text-white text-xs"
                     style={{
                       background: msg.role === 'user'
-                        ? 'linear-gradient(135deg, #0d9488, #f472b6)'
-                        : 'linear-gradient(135deg, #06b6d4, #14b8a6)',
+                        ? 'linear-gradient(135deg, #dc2626, #ea580c)'
+                        : 'linear-gradient(135deg, #ea580c, #eab308)',
                     }}
                   >
                     {msg.role === 'user' ? <User size={12} /> : <Bot size={12} />}
@@ -276,7 +276,7 @@ export default function ChatbotWidget() {
                     }`}
                     style={{
                       background: msg.role === 'user'
-                        ? 'linear-gradient(135deg, #0d9488, #06b6d4)'
+                        ? 'linear-gradient(135deg, #dc2626, #ea580c)'
                         : 'var(--color-bg)',
                       color: msg.role === 'user' ? 'white' : 'var(--color-text-primary)',
                       border: msg.role === 'assistant' ? '1px solid var(--color-border)' : 'none',
@@ -316,7 +316,7 @@ export default function ChatbotWidget() {
                     border: '1px solid var(--color-border)',
                     color: 'var(--color-text-primary)',
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = '#14b8a6')}
+                  onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
                   onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
                   id="chatbot-input"
                 />
@@ -326,7 +326,7 @@ export default function ChatbotWidget() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-9 h-9 rounded-xl flex items-center justify-center text-white disabled:opacity-50 transition-opacity"
-                  style={{ background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }}
+                  style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}
                   aria-label="Send message"
                   id="chatbot-send"
                 >

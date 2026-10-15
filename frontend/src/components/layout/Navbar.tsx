@@ -101,7 +101,7 @@ export default function Navbar() {
             <img
               src={avatarImg}
               alt="Phạm Minh Hiếu avatar"
-              className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-teal-500/40 hover:ring-teal-500/80 transition-all cursor-pointer"
+              className="w-8 h-8 rounded-full object-cover object-top ring-2 ring-red-500/40 hover:ring-red-500/80 transition-all cursor-pointer"
             />
           </NavLink>
 
@@ -133,7 +133,7 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                       isActive
-                        ? 'bg-indigo-500/10 text-indigo-500'
+                        ? 'bg-red-500/10 text-red-500 font-semibold'
                         : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]'
                     }`
                   }

@@ -8,13 +8,14 @@ import FadeIn, { StaggerContainer, StaggerItem } from '../components/ui/FadeIn'
 import picture2 from '../assets/picture2.jpg'
 import picture3 from '../assets/picture3.jpg'
 import heroImg from '../assets/picture1.jpg'
+import pmhLogo from '../assets/pmh-logo.png'
 
 interface Project {
   id: string
   title: string
   description: string
   tags: string[]
-  category: 'backend' | 'ai' | 'automotive'
+  category: 'fullstack' | 'web' | 'desktop'
   github?: string
   demo?: string
   image: string
@@ -23,67 +24,61 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: '1',
-    title: 'Minh Hieu Dev Portfolio Website',
-    description: 'Website cá nhân full-stack với React + NestJS, tích hợp AI chatbot Gemini, thời tiết real-time, blog system và đa ngôn ngữ.',
-    tags: ['React', 'NestJS', 'TypeScript', 'PostgreSQL', 'Gemini AI'],
-    category: 'backend',
+    id: 'profile-plus',
+    title: 'Profile Plus (Minh Hieu Dev)',
+    description: 'Website cá nhân full-stack cao cấp: React 19, NestJS, tích hợp AI Chatbot Gemini, tra cứu thời tiết real-time, đa ngôn ngữ và tối ưu SEO.',
+    tags: ['React 19', 'NestJS', 'TypeScript', 'TailwindCSS', 'Gemini AI', 'Vite'],
+    category: 'fullstack',
     github: 'https://github.com/phamminhhieu2004/profile-plus',
     image: heroImg,
     featured: true,
   },
   {
-    id: '2',
-    title: 'Automotive Data Bridge',
-    description: 'Hệ thống kết nối dữ liệu ECU/OBD với backend FastAPI, xử lý tín hiệu real-time và phân tích chẩn đoán lỗi xe.',
-    tags: ['FastAPI', 'Python', 'OBD-II', 'WebSocket', 'PostgreSQL'],
-    category: 'automotive',
-    github: 'https://github.com/phamminhhieu2004',
+    id: 'profile-premium',
+    title: 'Profile Premium',
+    description: 'Nền tảng portfolio cao cấp triển khai trực tiếp trên Vercel với thiết kế UI/UX hiện đại, hoạt ảnh mượt mà và tương tác tối ưu.',
+    tags: ['React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'Vercel'],
+    category: 'web',
+    github: 'https://github.com/phamminhhieu2004/profile-premium',
+    demo: 'https://profile-premium.vercel.app',
     image: picture2,
   },
   {
-    id: '3',
-    title: 'ML Vehicle Classifier',
-    description: 'Model TensorFlow phân loại và nhận diện các lỗi xe ô tô dựa trên dữ liệu cảm biến và hình ảnh chẩn đoán.',
-    tags: ['TensorFlow', 'Python', 'Machine Learning', 'CNN', 'OpenCV'],
-    category: 'ai',
-    github: 'https://github.com/phamminhhieu2004',
+    id: 'portfolio',
+    title: 'Personal Portfolio',
+    description: 'Website hồ sơ năng lực cá nhân giới thiệu hành trình học tập tại ICTU, kỹ năng lập trình phần mềm và các dự án tiêu biểu.',
+    tags: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'Vercel'],
+    category: 'web',
+    github: 'https://github.com/phamminhhieu2004/portfolio',
+    demo: 'https://portfolio-pham-minh-hieu.vercel.app',
     image: picture3,
   },
   {
-    id: '4',
-    title: 'RESTful API Service',
-    description: 'Backend service hiệu năng cao sử dụng Spring Boot với JWT auth, rate limiting, và tài liệu Swagger tự động.',
-    tags: ['Spring Boot', 'Java', 'JWT', 'PostgreSQL', 'Docker'],
-    category: 'backend',
-    github: 'https://github.com/phamminhhieu2004',
-    image: picture2,
-  },
-  {
-    id: '5',
-    title: 'Node.js Microservices',
-    description: 'Kiến trúc microservices với Node.js, message queue, và container orchestration cho hệ thống phân tán.',
-    tags: ['Node.js', 'Docker', 'RabbitMQ', 'MongoDB', 'Express'],
-    category: 'backend',
-    github: 'https://github.com/phamminhhieu2004',
-    image: picture3,
-  },
-  {
-    id: '6',
-    title: 'AI Chatbot Integration',
-    description: 'Chatbot AI thông minh tích hợp Gemini API với streaming response, context memory và đa ngôn ngữ.',
-    tags: ['Gemini AI', 'Node.js', 'WebSocket', 'React', 'TypeScript'],
-    category: 'ai',
-    github: 'https://github.com/phamminhhieu2004',
+    id: 'my-profile',
+    title: 'My Profile',
+    description: 'Website profile cá nhân đầu tay xây dựng với giao diện responsive thân thiện, bố cục gọn gàng giới thiệu thông tin và liên hệ.',
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web', 'Vercel'],
+    category: 'web',
+    github: 'https://github.com/phamminhhieu2004/my-profile',
+    demo: 'https://my-profile-xi-eosin-42.vercel.app',
     image: heroImg,
+  },
+  {
+    id: 'loveyou',
+    title: 'LoveYou App (C# / .NET)',
+    description: 'Ứng dụng desktop xây dựng bằng C# và .NET với giao diện tương tác độc đáo, hiệu ứng đồ họa động sinh động và thông điệp ý nghĩa.',
+    tags: ['C#', '.NET Framework', 'Windows Forms', 'Desktop App'],
+    category: 'desktop',
+    github: 'https://github.com/phamminhhieu2004/loveyou',
+    image: pmhLogo,
   },
 ]
 
 const categories = [
-  { value: 'all', label: 'All' },
-  { value: 'backend', label: 'Backend' },
-  { value: 'ai', label: 'AI/ML' },
-  { value: 'automotive', label: 'Automotive' },
+  { value: 'all', label: 'Tất cả' },
+  { value: 'fullstack', label: 'Full-stack' },
+  { value: 'web', label: 'Web Apps' },
+  { value: 'desktop', label: 'Desktop / C#' },
 ]
 
 export default function PortfolioPage() {
@@ -111,7 +106,7 @@ export default function PortfolioPage() {
                   filter === cat.value ? 'text-white shadow-lg' : 'hover:bg-[var(--color-surface)]'
                 }`}
                 style={filter === cat.value
-                  ? { background: 'linear-gradient(135deg, #14b8a6, #06b6d4)' }
+                  ? { background: 'linear-gradient(135deg, #dc2626, #ea580c)' }
                   : { color: 'var(--color-text-secondary)', border: '1px solid var(--color-border)' }
                 }
               >
@@ -134,7 +129,7 @@ export default function PortfolioPage() {
                     />
                     <div className="absolute top-4 left-4">
                       <span className="px-3 py-1 rounded-full text-xs font-bold text-white shadow-md"
-                        style={{ background: 'linear-gradient(135deg, #14b8a6, #f472b6)' }}>
+                        style={{ background: 'linear-gradient(135deg, #dc2626, #eab308)' }}>
                         ⭐ Featured
                       </span>
                     </div>
@@ -145,16 +140,22 @@ export default function PortfolioPage() {
                     <div className="flex flex-wrap gap-2 mb-6">
                       {projects[0].tags.map((tag) => (
                         <span key={tag} className="px-2.5 py-1 rounded-lg text-xs font-medium"
-                          style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
+                          style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-wrap gap-3">
                       {projects[0].github && (
                         <a href={projects[0].github} target="_blank" rel="noopener noreferrer" className="btn-primary" id="featured-project-github">
                           <Github size={16} />
                           {t('portfolio.view_code')}
+                        </a>
+                      )}
+                      {projects[0].demo && (
+                        <a href={projects[0].demo} target="_blank" rel="noopener noreferrer" className="btn-secondary" id="featured-project-demo">
+                          <ExternalLink size={16} />
+                          {t('portfolio.view_project')}
                         </a>
                       )}
                     </div>
@@ -183,7 +184,7 @@ export default function PortfolioPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                     <div className="absolute bottom-3 left-3">
                       <span className="px-2.5 py-0.5 rounded-md text-xs font-semibold text-white uppercase shadow-sm"
-                        style={{ background: 'linear-gradient(135deg, rgba(13,148,136,0.9), rgba(244,114,182,0.9))' }}>
+                        style={{ background: 'linear-gradient(135deg, rgba(220,38,38,0.9), rgba(234,179,8,0.9))' }}>
                         {project.category}
                       </span>
                     </div>

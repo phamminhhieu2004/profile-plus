@@ -11,8 +11,8 @@
   "hero": {
     "greeting": "Hi, I'm",
     "name": "Pham Minh Hieu",
-    "taglines": ["Backend Developer", "Automotive Engineer", "AI Enthusiast", "Music Producer"],
-    "description": "Bridging the world of Automotive Technology and Software Engineering. Building robust backend systems and exploring artificial intelligence.",
+    "taglines": ["Việt Nam muôn năm", "Hồ Chí Minh muôn năm", "Hoàng Sa - Trường Sa là của Việt Nam", "Đời đời nhớ ơn các anh hùng liệt sĩ"],
+    "description": "Bà nội tao là bà mẹ Việt Nam anh hùng, mưa bom bão đạn thời chiến còn không sợ. Thì tao sợ gì việc phải nhập ngũ để bảo vệ tổ quốc ở thời bình.",
     "cta_primary": "View Projects",
     "cta_secondary": "Get in Touch",
     "available": "Open to work"
@@ -45,9 +45,9 @@
     "view_project": "View Project",
     "view_code": "View Code",
     "all": "All",
-    "backend": "Backend",
-    "ai": "AI/ML",
-    "automotive": "Automotive"
+    "fullstack": "Full-stack",
+    "web": "Web Apps",
+    "desktop": "Desktop / C#"
   },
   "certificates": {
     "title": "Certificates",

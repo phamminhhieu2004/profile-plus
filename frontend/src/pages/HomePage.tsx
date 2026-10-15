@@ -9,7 +9,12 @@ import FadeIn, { StaggerContainer, StaggerItem } from '../components/ui/FadeIn'
 import avatarImg from '../assets/avatar.png'
 import heroImg from '../assets/picture1.jpg'
 
-const TAGLINES = ['Backend Developer', 'Kỹ thuật Ô tô', 'AI Enthusiast', 'Music Producer']
+const TAGLINES = [
+  'Việt Nam muôn năm',
+  'Hồ Chí Minh muôn năm',
+  'Hoàng Sa - Trường Sa là của Việt Nam',
+  'Đời đời nhớ ơn các anh hùng liệt sĩ',
+]
 
 function TypingEffect() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -47,7 +52,7 @@ function TypingEffect() {
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity }}
         className="ml-0.5"
-        style={{ color: '#14b8a6' }}
+        style={{ color: '#ef4444' }}
       >
         |
       </motion.span>
@@ -91,21 +96,21 @@ export default function HomePage() {
         <div
           className="absolute inset-0 -z-10"
           style={{
-            background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(20,184,166,0.18) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(244,114,182,0.15) 0%, transparent 60%)',
+            background: 'radial-gradient(ellipse 80% 60% at 50% -20%, rgba(220,38,38,0.2) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(234,179,8,0.18) 0%, transparent 60%)',
           }}
         />
 
         <div className="absolute top-20 left-10 w-72 h-72 rounded-full opacity-10 -z-10"
-          style={{ background: 'radial-gradient(circle, #14b8a6, transparent)' }} />
+          style={{ background: 'radial-gradient(circle, #dc2626, transparent)' }} />
         <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full opacity-10 -z-10"
-          style={{ background: 'radial-gradient(circle, #f472b6, transparent)' }} />
+          style={{ background: 'radial-gradient(circle, #eab308, transparent)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <FadeIn delay={0.1}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-6"
-                style={{ background: 'rgba(20,184,166,0.12)', color: '#14b8a6', border: '1px solid rgba(20,184,166,0.25)' }}>
-                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
                 {t('hero.available')}
               </div>
             </FadeIn>
@@ -118,7 +123,7 @@ export default function HomePage() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <div className="text-2xl font-semibold mb-6 h-9 flex items-center gap-2" style={{ color: 'var(--color-text-secondary)' }}>
+              <div className="text-xl sm:text-2xl font-semibold mb-6 min-h-[2.5rem] flex items-center gap-2" style={{ color: 'var(--color-text-secondary)' }}>
                 <TypingEffect />
               </div>
             </FadeIn>
@@ -129,11 +134,11 @@ export default function HomePage() {
 
             <FadeIn delay={0.5}>
               <div className="flex items-center gap-3 mb-6" style={{ color: 'var(--color-text-secondary)' }}>
-                <MapPin size={16} className="text-teal-400" />
+                <MapPin size={16} className="text-red-500" />
                 <span className="text-sm">Thái Nguyên, Việt Nam</span>
                 <span className="w-1 h-1 rounded-full bg-current" />
-                <Briefcase size={16} className="text-teal-400" />
-                <span className="text-sm">ICTU University</span>
+                <Briefcase size={16} className="text-amber-500" />
+                <span className="text-sm">Trường Đơn vị Công nghệ Thông tin và Truyền thông Thái Nguyên</span>
               </div>
             </FadeIn>
 
@@ -166,13 +171,13 @@ export default function HomePage() {
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: 'conic-gradient(from 0deg, #14b8a6, #06b6d4, #f472b6, #14b8a6)',
+                  background: 'conic-gradient(from 0deg, #dc2626, #ea580c, #facc15, #dc2626)',
                   padding: '3px',
                   borderRadius: '50%',
                 }}
               />
               <div className="relative w-72 h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden"
-                style={{ padding: '4px', background: 'conic-gradient(from 0deg, #14b8a6, #06b6d4, #f472b6, #14b8a6)', borderRadius: '50%' }}>
+                style={{ padding: '4px', background: 'conic-gradient(from 0deg, #dc2626, #ea580c, #facc15, #dc2626)', borderRadius: '50%' }}>
                 <img
                   src={avatarImg}
                   alt="Phạm Minh Hiếu"
@@ -188,7 +193,7 @@ export default function HomePage() {
                 style={{ border: '1px solid var(--color-border)' }}
               >
                 <div className="flex items-center gap-2">
-                  <Github size={16} className="text-teal-400" />
+                  <Github size={16} className="text-red-500" />
                   <span className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>GitHub</span>
                 </div>
               </motion.div>
