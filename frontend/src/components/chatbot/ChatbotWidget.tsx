@@ -24,7 +24,7 @@ Here is his profile:
 - Skills: Spring Boot (95%), FastAPI (90%), TensorFlow (90%), Node.js (85%), HTML/CSS (85%)
 - Automotive: Vehicle Systems (85%), ECU/OBD Diagnostics (80%), EV/Hybrid Tech (78%)
 - Hobbies: Backend development, AI/ML, Music Production (DJ/Producer)
-- Social: GitHub(phamminhhieu2004), Instagram(https://www.instagram.com/_.pmh.2004._/ or @_.pmh.2004._), Telegram(@pmh_2004), Facebook, TikTok
+- Social: GitHub(phamminhhieu2004), Instagram(https://www.instagram.com/minhhieudev.site/ or @minhhieudev.site), Telegram(@minhhieudev), Facebook(https://www.facebook.com/minhhieudev.site/), TikTok(@goodboy.real_minhhieu)
 - Certificates: Google Gemini Certified Educator, Faculty, Student
 - Open to work / collaboration opportunities
 Answer questions about Hiếu in the language the user writes in (Vietnamese or English). Be friendly, helpful, rapid, and keep responses concise (under 3-4 sentences) so that the user receives the answer as fast as possible.`
@@ -129,7 +129,7 @@ async function streamGeminiResponse(
   } else if (lower.includes('kỹ năng') || lower.includes('skill') || lower.includes('công nghệ') || lower.includes('stack')) {
     fallback = 'Hiếu thành thạo Spring Boot (95%), FastAPI (90%), TensorFlow (90%), Node.js (85%) và có chuyên môn về hệ thống chẩn đoán ô tô ECU/OBD!'
   } else if (lower.includes('liên hệ') || lower.includes('contact') || lower.includes('email') || lower.includes('sđt') || lower.includes('phone') || lower.includes('instagram')) {
-    fallback = 'Bạn có thể kết nối với Hiếu qua Instagram @_.pmh.2004._, Telegram @pmh_2004, hoặc qua trang Liên hệ!'
+    fallback = 'Bạn có thể kết nối với Hiếu qua Instagram @minhhieudev.site, Telegram @minhhieudev, hoặc qua trang Liên hệ!'
   } else if (lower.includes('học vấn') || lower.includes('trường') || lower.includes('ictu') || lower.includes('sinh viên')) {
     fallback = 'Hiếu hiện là sinh viên chuyên ngành Kỹ thuật Công nghệ Ô tô tại Đại học Công nghệ Thông tin & Truyền thông (ICTU) từ năm 2022 đến nay.'
   } else if (lower.includes('nhạc') || lower.includes('music') || lower.includes('dj') || lower.includes('producer')) {

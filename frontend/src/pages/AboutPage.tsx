@@ -81,7 +81,7 @@ export default function AboutPage() {
                 <div className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary)' }}>
                   <p>📍 Thái Nguyên, Việt Nam</p>
                   <p>📞 0989 770 905</p>
-                  <p>✉️ Telegram: @pmh_2004</p>
+                  <p>✉️ Telegram: @minhhieudev</p>
                 </div>
               </div>
 
@@ -108,12 +108,14 @@ export default function AboutPage() {
                     <h3 className="font-bold text-lg" style={{ color: 'var(--color-text-primary)' }}>{t('about.interests')}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {(t('about.interests_list', { returnObjects: true }) as string[]).map((interest: string) => (
-                      <span key={interest} className="px-3 py-1.5 rounded-xl text-sm font-medium"
-                        style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
-                        {interest}
-                      </span>
-                    ))}
+                    {(t('about.interests_list', { returnObjects: true }) as string[])
+                      .filter(Boolean)
+                      .map((interest: string) => (
+                        <span key={interest} className="px-3 py-1.5 rounded-xl text-sm font-medium"
+                          style={{ background: 'rgba(220,38,38,0.12)', color: '#ef4444', border: '1px solid rgba(220,38,38,0.25)' }}>
+                          {interest}
+                        </span>
+                      ))}
                   </div>
                 </div>
               </FadeIn>

@@ -18,10 +18,10 @@ interface ContactForm {
 
 const socialLinks = [
   { href: 'https://github.com/phamminhhieu2004', icon: Github, label: 'GitHub', username: 'phamminhhieu2004', color: '#ffffff', bg: '#24292e' },
-  { href: 'https://www.facebook.com/goodboy.real.minhhieu', icon: Facebook, label: 'Facebook', username: 'Phạm Minh Hiếu', color: '#ffffff', bg: '#1877f2' },
-  { href: 'https://www.tiktok.com/@goodboy.real_2004', icon: TikTok, label: 'TikTok', username: '@goodboy.real_2004', color: '#ffffff', bg: '#000000' },
-  { href: 'https://www.instagram.com/_.pmh.2004._/', icon: Instagram, label: 'Instagram', username: '@_.pmh.2004._', color: '#ffffff', bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)' },
-  { href: 'https://t.me/pmh_2004', icon: Send, label: 'Telegram', username: '@pmh_2004', color: '#ffffff', bg: '#2AABEE' },
+  { href: 'https://www.facebook.com/minhhieudev.site/', icon: Facebook, label: 'Facebook', username: 'minhhieudev.site', color: '#ffffff', bg: '#1877f2' },
+  { href: 'https://www.tiktok.com/@goodboy.real_minhhieu', icon: TikTok, label: 'TikTok', username: '@goodboy.real_minhhieu', color: '#ffffff', bg: '#000000' },
+  { href: 'https://www.instagram.com/minhhieudev.site/', icon: Instagram, label: 'Instagram', username: '@minhhieudev.site', color: '#ffffff', bg: 'linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045)' },
+  { href: 'https://t.me/minhhieudev', icon: Send, label: 'Telegram', username: '@minhhieudev', color: '#ffffff', bg: '#2AABEE' },
 ]
 
 const contactInfo = [

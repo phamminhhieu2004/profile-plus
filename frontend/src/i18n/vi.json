@@ -15,16 +15,16 @@
     "description": "Bà nội tao là bà mẹ Việt Nam anh hùng, mưa bom bão đạn thời chiến còn không sợ. Thì tao sợ gì việc phải nhập ngũ để bảo vệ tổ quốc ở thời bình.",
     "cta_primary": "Xem dự án",
     "cta_secondary": "Liên hệ ngay",
-    "available": "Đang tìm kiếm cơ hội"
+    "available": "Đang chờ người phụ nữ của đời mình"
   },
   "about": {
     "title": "Về tôi",
-    "subtitle": "Câu chuyện của một kỹ sư đam mê công nghệ",
-    "bio": "Sinh viên kết hợp đam mê kỹ thuật ô tô với kỹ năng lập trình phần mềm hiện đại. Tôi xây dựng các hệ thống backend vững chắc với Spring Boot, FastAPI & Node.js — trên nền tảng kiến thức kỹ thuật ô tô, chẩn đoán điện tử và công nghệ xe điện/hybrid.",
+    "subtitle": "Lời tâm sự của một cậu sinh viên đam mê nhiều mảng",
+    "bio": "Dù chỉ là một sinh viên ngành Công nghệ ô tô bình thường nhưng tao có niềm đam mê to lớn với lập trình nên tao đã tự tìm tòi và học hỏi để cải thiện kĩ năng của bản thân hơn đó các mày ạ.",
     "education": "Học vấn",
     "experience": "Kinh nghiệm",
     "interests": "Sở thích",
-    "interests_list": ["Lập trình Backend", "Kỹ thuật Ô tô", "Trí tuệ nhân tạo", "Sản xuất âm nhạc", "Công nghệ xe điện"],
+    "interests_list": ["Nghe nhạc nè", "Xem phim nè", "Đi dạo buổi tối nữa", "Thích ngồi chill nữa nè", "Đặc biệt là đi phượt bằng xe máy"],
     "download_cv": "Tải CV",
     "stats": {
       "years": "Năm kinh nghiệm",
@@ -104,5 +104,13 @@
   "theme": {
     "light": "Sáng",
     "dark": "Tối"
+  },
+  "auth": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất",
+    "forgotPassword": "Quên mật khẩu",
+    "profile": "Tài khoản",
+    "welcomeBack": "Chào mừng trở lại"
   }
 }

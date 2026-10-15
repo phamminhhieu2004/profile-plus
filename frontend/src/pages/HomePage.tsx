@@ -226,7 +226,7 @@ export default function HomePage() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn className="text-center mb-12">
           <h2 className="section-title mb-3" style={{ color: 'var(--color-text-primary)' }}>Tech Stack</h2>
-          <p className="section-subtitle mx-auto">Những công nghệ tôi sử dụng hàng ngày</p>
+          <p className="section-subtitle mx-auto">Những công nghệ tao sử dụng để làm nè</p>
         </FadeIn>
         <StaggerContainer className="flex flex-wrap justify-center gap-3">
           {['Spring Boot', 'FastAPI', 'Node.js', 'TensorFlow', 'Python', 'Java', 'PostgreSQL', 'Docker', 'HTML/CSS', 'Git'].map((tech) => (
@@ -262,11 +262,11 @@ export default function HomePage() {
             </FadeIn>
             <FadeIn delay={0.2} direction="left">
               <h2 className="section-title mb-4" style={{ color: 'var(--color-text-primary)' }}>
-                Automotive meets{' '}
-                <span className="gradient-text">Software</span>
+                Muốn gặp tao thì ghé quán{' '}
+                <span className="gradient-text">Chốn Coffee</span> vào 17h-22h nha
               </h2>
               <p className="section-subtitle mb-6">
-                Tôi kết hợp kiến thức kỹ thuật ô tô với lập trình phần mềm để xây dựng các giải pháp độc đáo — từ chẩn đoán ECU đến AI backend.
+                Ấn vào tìm hiểu thêm hoặc giới thiệu để xem thêm thông tin về tao nha
               </p>
               <Link to="/about" className="btn-primary inline-flex" id="home-learn-more">
                 Tìm hiểu thêm

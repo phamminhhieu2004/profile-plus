@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import { Moon, Sun, Menu, X, Globe } from 'lucide-react'
+import { Moon, Sun, Menu, X, Globe, LogIn, LogOut, ChevronDown, UserPlus } from 'lucide-react'
 import { useAppStore } from '../../store/appStore'
+import { useAuthStore } from '../../store/authStore'
 import LogoSVG from '../ui/LogoSVG'
 import avatarImg from '../../assets/avatar.png'
+import toast from 'react-hot-toast'
 
 const navItems = [
   { path: '/', key: 'nav.home' },
@@ -20,9 +22,13 @@ const navItems = [
 export default function Navbar() {
   const { t } = useTranslation()
   const location = useLocation()
+  const navigate = useNavigate()
   const { theme, toggleTheme, language, toggleLanguage } = useAppStore()
+  const { user, logout } = useAuthStore()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const userMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -33,6 +39,23 @@ export default function Navbar() {
   useEffect(() => {
     setMobileOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const handleLogout = async () => {
+    setUserMenuOpen(false)
+    await logout()
+    toast.success('Đã đăng xuất thành công')
+    navigate('/')
+  }
 
   return (
     <header
@@ -97,6 +120,66 @@ export default function Navbar() {
             </AnimatePresence>
           </button>
 
+          {/* Auth section */}
+          {user ? (
+            <div className="relative hidden sm:block" ref={userMenuRef}>
+              <button
+                onClick={() => setUserMenuOpen((v) => !v)}
+                className="flex items-center gap-2 px-2 py-1.5 rounded-xl transition-all hover:bg-[var(--color-surface)]"
+              >
+                {user.avatar ? (
+                  <img src={user.avatar} alt={user.name || user.email} className="w-8 h-8 rounded-full object-cover ring-2 ring-red-500/40" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}>
+                    {(user.name || user.email).charAt(0).toUpperCase()}
+                  </div>
+                )}
+                <ChevronDown size={14} className={`transition-transform ${userMenuOpen ? 'rotate-180' : ''}`} style={{ color: 'var(--color-text-muted)' }} />
+              </button>
+
+              <AnimatePresence>
+                {userMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95, y: -8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute right-0 mt-2 w-56 rounded-xl border overflow-hidden"
+                    style={{ background: 'var(--color-surface)', borderColor: 'var(--color-border)', boxShadow: 'var(--shadow-card)' }}
+                  >
+                    <div className="px-4 py-3 border-b" style={{ borderColor: 'var(--color-border)' }}>
+                      <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>{user.name || 'User'}</p>
+                      <p className="text-xs truncate" style={{ color: 'var(--color-text-muted)' }}>{user.email}</p>
+                      <span className="inline-block mt-1.5 px-2 py-0.5 rounded-full text-xs font-medium"
+                        style={{ background: user.role === 'ADMIN' ? 'rgba(220,38,38,0.15)' : 'rgba(100,116,139,0.15)', color: user.role === 'ADMIN' ? '#dc2626' : '#64748b' }}>
+                        {user.role}
+                      </span>
+                    </div>
+                    <button onClick={handleLogout}
+                      className="w-full flex items-center gap-2 px-4 py-3 text-sm transition-colors hover:bg-red-500/10 hover:text-red-500 text-left"
+                      style={{ color: 'var(--color-text-secondary)' }}>
+                      <LogOut size={15} />
+                      Đăng xuất
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <div className="hidden sm:flex items-center gap-2">
+              <NavLink to="/login"
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-all hover:bg-[var(--color-surface)]"
+                style={{ color: 'var(--color-text-secondary)' }}>
+                <LogIn size={15} />
+                Đăng nhập
+              </NavLink>
+              <NavLink to="/register" className="btn-primary !py-2 !px-3 !text-sm">
+                <UserPlus size={15} />
+                <span>Đăng ký</span>
+              </NavLink>
+            </div>
+          )}
+
           <NavLink to="/about" className="hidden sm:block">
             <img
               src={avatarImg}
@@ -141,6 +224,41 @@ export default function Navbar() {
                   {t(item.key)}
                 </NavLink>
               ))}
+              <div className="border-t pt-3 mt-2 flex flex-col gap-1" style={{ borderColor: 'var(--color-border)' }}>
+                {user ? (
+                  <>
+                    <div className="flex items-center gap-3 px-4 py-2">
+                      {user.avatar ? (
+                        <img src={user.avatar} alt="" className="w-8 h-8 rounded-full" />
+                      ) : (
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold" style={{ background: 'linear-gradient(135deg, #dc2626, #ea580c)' }}>
+                          {(user.name || user.email).charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div>
+                        <p className="text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>{user.name}</p>
+                        <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{user.email}</p>
+                      </div>
+                    </div>
+                    <button onClick={handleLogout}
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium text-red-500 hover:bg-red-500/10 transition-colors">
+                      <LogOut size={15} />
+                      Đăng xuất
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <NavLink to="/login" className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium transition-colors text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]">
+                      <LogIn size={15} />
+                      Đăng nhập
+                    </NavLink>
+                    <NavLink to="/register" className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-red-500/10 text-red-500">
+                      <UserPlus size={15} />
+                      Đăng ký
+                    </NavLink>
+                  </>
+                )}
+              </div>
             </div>
           </motion.div>
         )}

@@ -42,6 +42,15 @@ services:
       SMTP_PASS: ${SMTP_PASS}
       CONTACT_RECEIVER: ${CONTACT_RECEIVER:-phamminhhieu2004@gmail.com}
       JWT_SECRET: ${JWT_SECRET:-supersecretkey_profileplus}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GOOGLE_CALLBACK_URL: ${GOOGLE_CALLBACK_URL:-http://localhost:3001/api/auth/google/callback}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+      GITHUB_CALLBACK_URL: ${GITHUB_CALLBACK_URL:-http://localhost:3001/api/auth/github/callback}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_BOT_USERNAME: ${TELEGRAM_BOT_USERNAME}
+      FRONTEND_URL: ${FRONTEND_URL:-http://localhost:5173}
     ports:
       - '3001:3001'
 
@@ -56,6 +65,8 @@ services:
         VITE_EMAILJS_TEMPLATE_ID: ${VITE_EMAILJS_TEMPLATE_ID:-${EMAILJS_TEMPLATE_ID}}
         VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY:-${EMAILJS_PUBLIC_KEY}}
         VITE_WEATHER_API_KEY: ${VITE_WEATHER_API_KEY:-${WEATHER_API_KEY}}
+        VITE_API_URL: ${VITE_API_URL:-/api}
+        VITE_TELEGRAM_BOT_USERNAME: ${VITE_TELEGRAM_BOT_USERNAME}
     container_name: profile_plus_frontend
     restart: always
     depends_on:

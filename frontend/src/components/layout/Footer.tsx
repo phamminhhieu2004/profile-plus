@@ -6,10 +6,10 @@ import LogoSVG from '../ui/LogoSVG'
 
 const socialLinks = [
   { href: 'https://github.com/phamminhhieu2004', icon: Github, label: 'GitHub', color: 'hover:text-white' },
-  { href: 'https://www.facebook.com/goodboy.real.minhhieu', icon: Facebook, label: 'Facebook', color: 'hover:text-blue-400' },
-  { href: 'https://www.tiktok.com/@goodboy.real_2004', icon: TikTok, label: 'TikTok', color: 'hover:text-pink-400' },
-  { href: 'https://www.instagram.com/_.pmh.2004._/', icon: Instagram, label: 'Instagram', color: 'hover:text-pink-400' },
-  { href: 'https://t.me/pmh_2004', icon: Send, label: 'Telegram', color: 'hover:text-sky-400' },
+  { href: 'https://www.facebook.com/minhhieudev.site/', icon: Facebook, label: 'Facebook', color: 'hover:text-blue-400' },
+  { href: 'https://www.tiktok.com/@goodboy.real_minhhieu', icon: TikTok, label: 'TikTok', color: 'hover:text-pink-400' },
+  { href: 'https://www.instagram.com/minhhieudev.site/', icon: Instagram, label: 'Instagram', color: 'hover:text-pink-400' },
+  { href: 'https://t.me/minhhieudev', icon: Send, label: 'Telegram', color: 'hover:text-sky-400' },
 ]
 
 const footerLinks = [

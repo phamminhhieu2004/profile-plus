@@ -168,10 +168,10 @@ docker-compose up --build -d
 - **Quê quán**: Phổ Yên, Thái Nguyên, Việt Nam
 - **Học vấn**: Kỹ thuật Ô tô — Đại học Công nghệ Thông tin và Truyền thông (ICTU) (2022 – Hiện tại)
 - **GitHub**: [@phamminhhieu2004](https://github.com/phamminhhieu2004)
-- **Instagram**: [@_.pmh.2004._](https://www.instagram.com/_.pmh.2004._/)
-- **Facebook**: [Phạm Minh Hiếu](https://www.facebook.com/goodboy.real.minhhieu)
-- **TikTok**: [@goodboy.real_2004](https://www.tiktok.com/@goodboy.real_2004)
-- **Telegram**: [@pmh_2004](https://t.me/pmh_2004)
+- **Instagram**: [@minhhieudev.site](https://www.instagram.com/minhhieudev.site/)
+- **Facebook**: [Phạm Minh Hiếu](https://www.facebook.com/minhhieudev.site/)
+- **TikTok**: [@goodboy.real_minhhieu](https://www.tiktok.com/@goodboy.real_minhhieu)
+- **Telegram**: [@minhhieudev](https://t.me/minhhieudev)
 - **Email**: `phamminhhieu2004@gmail.com`
 - **Hotline**: `0989 770 905`
 
