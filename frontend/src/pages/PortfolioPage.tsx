@@ -5,10 +5,11 @@ import { ExternalLink } from 'lucide-react'
 import { Github } from '../components/icons/SocialIcons'
 import PageWrapper from '../components/ui/PageWrapper'
 import FadeIn, { StaggerContainer, StaggerItem } from '../components/ui/FadeIn'
-import picture2 from '../assets/picture2.jpg'
-import picture3 from '../assets/picture3.jpg'
-import heroImg from '../assets/picture1.jpg'
-import pmhLogo from '../assets/pmh-logo.png'
+import projectProfilePlus from '../assets/projects/project-profile-plus.png'
+import projectProfilePremium from '../assets/projects/project-profile-premium.png'
+import projectPortfolio from '../assets/projects/project-portfolio.png'
+import projectMyProfile from '../assets/projects/project-my-profile.png'
+import projectLoveyou from '../assets/projects/project-loveyou.png'
 
 interface Project {
   id: string
@@ -30,7 +31,8 @@ const projects: Project[] = [
     tags: ['React 19', 'NestJS', 'TypeScript', 'TailwindCSS', 'Gemini AI', 'Vite'],
     category: 'fullstack',
     github: 'https://github.com/phamminhhieu2004/profile-plus',
-    image: heroImg,
+    demo: 'https://minhhieudev.site',
+    image: projectProfilePlus,
     featured: true,
   },
   {
@@ -41,36 +43,36 @@ const projects: Project[] = [
     category: 'web',
     github: 'https://github.com/phamminhhieu2004/profile-premium',
     demo: 'https://profile-premium.vercel.app',
-    image: picture2,
+    image: projectProfilePremium,
   },
   {
     id: 'portfolio',
     title: 'Personal Portfolio',
     description: 'Website hồ sơ năng lực cá nhân giới thiệu hành trình học tập tại ICTU, kỹ năng lập trình phần mềm và các dự án tiêu biểu.',
-    tags: ['React', 'TypeScript', 'Vite', 'TailwindCSS', 'Vercel'],
+    tags: ['Next.js 16', 'TypeScript', 'TailwindCSS', 'Three.js 3D', 'WebGL'],
     category: 'web',
     github: 'https://github.com/phamminhhieu2004/portfolio',
     demo: 'https://portfolio-pham-minh-hieu.vercel.app',
-    image: picture3,
+    image: projectPortfolio,
   },
   {
     id: 'my-profile',
     title: 'My Profile',
     description: 'Website profile cá nhân đầu tay xây dựng với giao diện responsive thân thiện, bố cục gọn gàng giới thiệu thông tin và liên hệ.',
-    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web', 'Vercel'],
+    tags: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Web'],
     category: 'web',
     github: 'https://github.com/phamminhhieu2004/my-profile',
-    demo: 'https://my-profile-xi-eosin-42.vercel.app',
-    image: heroImg,
+    demo: 'https://github.com/phamminhhieu2004/my-profile',
+    image: projectMyProfile,
   },
   {
     id: 'loveyou',
-    title: 'LoveYou App (C# / .NET)',
-    description: 'Ứng dụng desktop xây dựng bằng C# và .NET với giao diện tương tác độc đáo, hiệu ứng đồ họa động sinh động và thông điệp ý nghĩa.',
-    tags: ['C#', '.NET Framework', 'Windows Forms', 'Desktop App'],
+    title: 'LoveYou App (Interactive Web & C#)',
+    description: 'Ứng dụng tương tác với giao diện lãng mạn độc đáo, khung mô phỏng điện thoại, hiệu ứng hoạt họa và âm nhạc thổ lộ cảm xúc.',
+    tags: ['HTML5', 'CSS3 Animation', 'JavaScript', 'C# .NET'],
     category: 'desktop',
     github: 'https://github.com/phamminhhieu2004/loveyou',
-    image: pmhLogo,
+    image: projectLoveyou,
   },
 ]
 
