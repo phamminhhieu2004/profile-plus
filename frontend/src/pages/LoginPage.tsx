@@ -6,7 +6,14 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore, API_BASE_URL } from '../store/authStore'
 
-const TELEGRAM_BOT = import.meta.env.VITE_TELEGRAM_BOT_USERNAME || ''
+const getTelegramBotId = () => {
+  const raw = (import.meta.env.VITE_TELEGRAM_BOT_ID || import.meta.env.VITE_TELEGRAM_BOT_TOKEN || import.meta.env.VITE_TELEGRAM_BOT_USERNAME || '').trim()
+  if (raw.includes(':')) {
+    return raw.split(':')[0]
+  }
+  return raw
+}
+const TELEGRAM_BOT = getTelegramBotId()
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -41,19 +48,23 @@ export default function LoginPage() {
   }
 
   const handleTelegram = () => {
+    if (!TELEGRAM_BOT || TELEGRAM_BOT === 'your_telegram_bot_username') {
+      toast('Vui lòng cấu hình VITE_TELEGRAM_BOT_ID', { icon: '⚙️' })
+      return
+    }
     if (typeof window !== 'undefined' && (window as any).Telegram?.Login) {
       ; (window as any).Telegram.Login.auth({ bot_id: TELEGRAM_BOT, request_access: true }, async (data: any) => {
-        if (!data) { toast.error('Đăng nhập Telegram thất bại'); return }
+        if (!data) { toast.error('Đăng nhập Telegram thất bại hoặc đã bị hủy'); return }
         try {
           setLoading(true)
           const res = await axios.post(`${API_BASE_URL}/auth/telegram`, data)
           setAuth(res.data.user, res.data.accessToken, res.data.refreshToken)
           toast.success('Đăng nhập thành công! 🚀')
           navigate('/')
-        } catch { toast.error('Lỗi xác thực Telegram') } finally { setLoading(false) }
+        } catch { toast.error('Lỗi xác thực Telegram từ server') } finally { setLoading(false) }
       })
     } else {
-      toast('Cần cấu hình Telegram Bot Username', { icon: '⚙️' })
+      toast.error('Chưa tải được thư viện Telegram. Vui lòng thử lại.')
     }
   }
 
