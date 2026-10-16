@@ -22,6 +22,7 @@ async function bootstrap() {
   )
   app.enableCors({
     origin: [
+      'https://minhhieudev.site',
       'http://localhost:5173',
       'http://localhost:3000',
       'http://localhost',
