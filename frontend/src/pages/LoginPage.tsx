@@ -7,11 +7,11 @@ import toast from 'react-hot-toast'
 import { useAuthStore, API_BASE_URL } from '../store/authStore'
 
 const getTelegramBotId = () => {
-  const raw = (import.meta.env.VITE_TELEGRAM_BOT_ID || import.meta.env.VITE_TELEGRAM_BOT_TOKEN || import.meta.env.VITE_TELEGRAM_BOT_USERNAME || '').trim()
+  const raw = (import.meta.env.VITE_TELEGRAM_BOT_ID || import.meta.env.VITE_TELEGRAM_BOT_TOKEN || '8881724059').trim()
   if (raw.includes(':')) {
     return raw.split(':')[0]
   }
-  return raw
+  return raw || '8881724059'
 }
 const TELEGRAM_BOT = getTelegramBotId()
 
