@@ -1,11 +1,16 @@
-import { IsEmail, IsString, MinLength, IsOptional } from 'class-validator'
+import { IsString, MinLength, IsOptional } from 'class-validator'
 
 export class RegisterDto {
-  @IsEmail()
-  email: string
+  @IsString()
+  @IsOptional()
+  email?: string
 
   @IsString()
-  @MinLength(8)
+  @IsOptional()
+  phone?: string
+
+  @IsString()
+  @MinLength(6)
   password: string
 
   @IsString()
@@ -14,15 +19,42 @@ export class RegisterDto {
 }
 
 export class LoginDto {
-  @IsEmail()
-  email: string
+  @IsString()
+  email: string // Accepts email, phone number, or username (e.g. phamminhhieu18022004)
 
   @IsString()
   password: string
 }
 
+export class UpdateProfileDto {
+  @IsString()
+  @IsOptional()
+  name?: string
+
+  @IsString()
+  @IsOptional()
+  email?: string
+
+  @IsString()
+  @IsOptional()
+  phone?: string
+
+  @IsString()
+  @IsOptional()
+  avatar?: string
+}
+
+export class ChangePasswordDto {
+  @IsString()
+  currentPassword: string
+
+  @IsString()
+  @MinLength(6)
+  newPassword: string
+}
+
 export class ForgotPasswordDto {
-  @IsEmail()
+  @IsString()
   email: string
 }
 
@@ -31,7 +63,7 @@ export class ResetPasswordDto {
   token: string
 
   @IsString()
-  @MinLength(8)
+  @MinLength(6)
   newPassword: string
 }
 

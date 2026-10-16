@@ -20,6 +20,8 @@ const RegisterPage = lazy(() => import('./pages/RegisterPage'))
 const ForgotPasswordPage = lazy(() => import('./pages/ForgotPasswordPage'))
 const ResetPasswordPage = lazy(() => import('./pages/ResetPasswordPage'))
 const AuthCallbackPage = lazy(() => import('./pages/AuthCallbackPage'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage'))
+const AdminBlogPage = lazy(() => import('./pages/AdminBlogPage'))
 
 export default function App() {
   const { theme, language } = useAppStore()
@@ -76,6 +78,8 @@ export default function App() {
                   <Route path="/blog" element={<BlogPage />} />
                   <Route path="/blog/:id" element={<BlogDetailPage />} />
                   <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/admin/blog" element={<AdminBlogPage />} />
                 </Routes>
               </Layout>
             }

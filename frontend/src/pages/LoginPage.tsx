@@ -42,7 +42,7 @@ export default function LoginPage() {
 
   const handleTelegram = () => {
     if (typeof window !== 'undefined' && (window as any).Telegram?.Login) {
-      ;(window as any).Telegram.Login.auth({ bot_id: TELEGRAM_BOT, request_access: true }, async (data: any) => {
+      ; (window as any).Telegram.Login.auth({ bot_id: TELEGRAM_BOT, request_access: true }, async (data: any) => {
         if (!data) { toast.error('Đăng nhập Telegram thất bại'); return }
         try {
           setLoading(true)
@@ -115,12 +115,14 @@ export default function LoginPage() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>Email</label>
+              <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>
+                Tài khoản (Tên đăng nhập, Email hoặc Số điện thoại)
+              </label>
               <div className="relative">
                 <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
                 <input
-                  type="email"
-                  placeholder="ban@example.com"
+                  type="text"
+                  placeholder="Email hoặc SĐT"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   required
@@ -194,11 +196,11 @@ function SocialButton({ onClick, icon, label }: { onClick: () => void; icon: Rea
       }}
       onMouseEnter={(e) => {
         (e.currentTarget as HTMLElement).style.borderColor = '#dc2626'
-        ;(e.currentTarget as HTMLElement).style.color = 'var(--color-text-primary)'
+          ; (e.currentTarget as HTMLElement).style.color = 'var(--color-text-primary)'
       }}
       onMouseLeave={(e) => {
         (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-border)'
-        ;(e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)'
+          ; (e.currentTarget as HTMLElement).style.color = 'var(--color-text-secondary)'
       }}
     >
       {icon}

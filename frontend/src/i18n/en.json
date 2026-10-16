@@ -104,5 +104,14 @@
   "theme": {
     "light": "Light",
     "dark": "Dark"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "forgotPassword": "Forgot Password",
+    "profile": "Profile & Settings",
+    "changePassword": "Change Password",
+    "welcomeBack": "Welcome Back"
   }
 }

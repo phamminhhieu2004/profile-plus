@@ -35,7 +35,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
-              Backend Developer & Automotive Engineer based in Thái Nguyên, Vietnam.
+              Phạm Minh Hiếu from Thái Nguyên, Vietnam.
             </p>
           </div>
 

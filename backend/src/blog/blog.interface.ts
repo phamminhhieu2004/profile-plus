@@ -8,5 +8,20 @@ export interface BlogPost {
   readTime: number
   tags: string[]
   imageUrl?: string
+  mediaUrls?: string[]
   featured?: boolean
 }
+
+export interface CreateBlogPostDto {
+  title: string
+  slug?: string
+  excerpt: string
+  content: string
+  tags: string[]
+  imageUrl?: string
+  mediaUrls?: string[]
+  featured?: boolean
+  readTime?: number
+}
+
+export interface UpdateBlogPostDto extends Partial<CreateBlogPostDto> {}

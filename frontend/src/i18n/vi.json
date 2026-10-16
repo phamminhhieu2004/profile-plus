@@ -11,7 +11,12 @@
   "hero": {
     "greeting": "Xin chào, tôi là",
     "name": "Phạm Minh Hiếu",
-    "taglines": ["Việt Nam muôn năm", "Hồ Chí Minh muôn năm", "Hoàng Sa - Trường Sa là của Việt Nam", "Đời đời nhớ ơn các anh hùng liệt sĩ"],
+    "taglines": [
+      "Việt Nam muôn năm",
+      "Hồ Chí Minh muôn năm",
+      "Hoàng Sa - Trường Sa là của Việt Nam",
+      "Đời đời nhớ ơn các anh hùng liệt sĩ"
+    ],
     "description": "Bà nội tao là bà mẹ Việt Nam anh hùng, mưa bom bão đạn thời chiến còn không sợ. Thì tao sợ gì việc phải nhập ngũ để bảo vệ tổ quốc ở thời bình.",
     "cta_primary": "Xem dự án",
     "cta_secondary": "Liên hệ ngay",
@@ -24,7 +29,13 @@
     "education": "Học vấn",
     "experience": "Kinh nghiệm",
     "interests": "Sở thích",
-    "interests_list": ["Nghe nhạc nè", "Xem phim nè", "Đi dạo buổi tối nữa", "Thích ngồi chill nữa nè", "Đặc biệt là đi phượt bằng xe máy"],
+    "interests_list": [
+      "Nghe nhạc nè",
+      "Xem phim nè",
+      "Đi dạo buổi tối nữa",
+      "Thích ngồi chill nữa nè",
+      "Đặc biệt là đi phượt bằng xe máy"
+    ],
     "download_cv": "Tải CV",
     "stats": {
       "years": "Năm kinh nghiệm",
@@ -35,13 +46,13 @@
   },
   "skills": {
     "title": "Kỹ năng",
-    "subtitle": "Các công nghệ và kỹ năng tôi sử dụng",
+    "subtitle": "Các công cụ và kỹ năng của tao khi sử dụng chúng",
     "automotive": "Kỹ thuật Ô tô",
     "software": "Lập trình & Phần mềm"
   },
   "portfolio": {
     "title": "Dự án",
-    "subtitle": "Những gì tôi đã xây dựng",
+    "subtitle": "Những gì tao đã cố gắng để tạo ra",
     "view_project": "Xem dự án",
     "view_code": "Xem code",
     "all": "Tất cả",
@@ -51,12 +62,12 @@
   },
   "certificates": {
     "title": "Chứng chỉ",
-    "subtitle": "Chứng nhận từ Google Gemini AI",
+    "subtitle": "Chứng nhận từ Google Gemini AI của tao nè",
     "zoom_hint": "Click để xem chi tiết"
   },
   "blog": {
     "title": "Blog",
-    "subtitle": "Chia sẻ kiến thức và kinh nghiệm",
+    "subtitle": "Chia sẻ về đời sống cũng như kiến thức mà tao có nè",
     "read_more": "Đọc thêm",
     "all_posts": "Tất cả bài viết",
     "tags": "Chủ đề",
@@ -65,7 +76,7 @@
   },
   "contact": {
     "title": "Liên hệ",
-    "subtitle": "Hãy kết nối với tôi",
+    "subtitle": "Cần gì cứ tìm tao ở bên dưới nha",
     "name": "Họ và tên",
     "email": "Email",
     "subject": "Chủ đề",
@@ -78,16 +89,16 @@
     "phone": "Số điện thoại",
     "location": "Địa chỉ",
     "placeholders": {
-      "name": "Nguyễn Văn A",
+      "name": "Tên mày, ví dụ: Phạm Minh Hiếu",
       "email": "example@email.com",
-      "subject": "Hợp tác dự án",
-      "message": "Xin chào Hiếu, tôi muốn..."
+      "subject": "Muốn nói về cái giề, ví dụ: Lập trình, nhạc,...",
+      "message": "Kể chi tiết ở đây để tao còn đọc hiểu nha mày..."
     }
   },
   "chatbot": {
-    "title": "Hỏi về Hiếu",
-    "placeholder": "Hỏi về tôi...",
-    "greeting": "Xin chào! Tôi là AI assistant của Phạm Minh Hiếu. Bạn muốn biết gì về tôi?",
+    "title": "Hiếu Pờ Ri Mi Um",
+    "placeholder": "Thắc mắc gì?",
+    "greeting": "Xin chào! Tôi là AI assistant của Phạm Minh Hiếu. Bạn muốn hỏi tôi điều gì?",
     "send": "Gửi",
     "powered_by": "Powered by Gemini AI"
   },
@@ -99,7 +110,7 @@
   },
   "footer": {
     "rights": "Tất cả quyền được bảo lưu.",
-    "made_with": "Làm với ❤️ bởi Phạm Minh Hiếu"
+    "made_with": "Làm với ❤️ nhiệt huyết bởi tao - cụ thể là Phạm Minh Hiếu"
   },
   "theme": {
     "light": "Sáng",
@@ -111,6 +122,6 @@
     "logout": "Đăng xuất",
     "forgotPassword": "Quên mật khẩu",
     "profile": "Tài khoản",
-    "welcomeBack": "Chào mừng trở lại"
+    "welcomeBack": "Chúc mừng vì đã lò vi sóng"
   }
 }

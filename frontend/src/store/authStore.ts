@@ -10,7 +10,9 @@ export const API_BASE_URL = getBaseApiUrl()
 
 export interface AuthUser {
   id: string
-  email: string
+  email?: string
+  phone?: string
+  username?: string
   name?: string
   avatar?: string
   role: string
@@ -28,6 +30,8 @@ interface AuthState {
   logout: () => Promise<void>
   refreshAccessToken: () => Promise<boolean>
   fetchMe: () => Promise<void>
+  updateProfile: (data: { name?: string; email?: string; phone?: string; avatar?: string }) => Promise<AuthUser>
+  changePassword: (data: { currentPassword: string; newPassword: string }) => Promise<{ success: boolean; message: string }>
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -91,6 +95,17 @@ export const useAuthStore = create<AuthState>()(
             }
           }
         }
+      },
+
+      updateProfile: async (data) => {
+        const res = await axios.put(`${API_BASE_URL}/auth/profile`, data)
+        set({ user: res.data })
+        return res.data
+      },
+
+      changePassword: async (data) => {
+        const res = await axios.put(`${API_BASE_URL}/auth/change-password`, data)
+        return res.data
       },
     }),
     {

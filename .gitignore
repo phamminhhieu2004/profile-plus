@@ -49,3 +49,6 @@ junit*.properties
 
 # Docker
 .dockerignore
+
+# Temporary scratch
+scratch/

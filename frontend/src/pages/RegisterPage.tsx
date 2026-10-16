@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Eye, EyeOff, Mail, Lock, User, Loader2, AlertCircle, Check } from 'lucide-react'
+import { Eye, EyeOff, Mail, Lock, User, Loader2, AlertCircle, Check, Phone } from 'lucide-react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { useAuthStore, API_BASE_URL } from '../store/authStore'
@@ -15,7 +15,7 @@ const passwordRules = [
 export default function RegisterPage() {
   const navigate = useNavigate()
   const { setAuth } = useAuthStore()
-  const [form, setForm] = useState({ email: '', password: '', name: '' })
+  const [form, setForm] = useState({ email: '', phone: '', password: '', name: '' })
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -23,9 +23,18 @@ export default function RegisterPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+    if (!form.email && !form.phone) {
+      setError('Vui lòng nhập Email hoặc Số điện thoại để đăng ký')
+      return
+    }
     setLoading(true)
     try {
-      const res = await axios.post(`${API_BASE_URL}/auth/register`, form)
+      const res = await axios.post(`${API_BASE_URL}/auth/register`, {
+        email: form.email || undefined,
+        phone: form.phone || undefined,
+        password: form.password,
+        name: form.name,
+      })
       setAuth(res.data.user, res.data.accessToken, res.data.refreshToken)
       toast.success('Tài khoản đã được tạo thành công! 🎉')
       navigate('/')
@@ -65,7 +74,7 @@ export default function RegisterPage() {
               <span className="font-bold text-xl gradient-text">Profile Plus</span>
             </Link>
             <h1 className="text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>Tạo tài khoản mới</h1>
-            <p className="mt-1 text-sm" style={{ color: 'var(--color-text-secondary)' }}>Tham gia cộng đồng của chúng tôi</p>
+            <p className="mt-1 text-sm" style={{ color: 'var(--color-text-secondary)' }}>Tham gia cộng đồng học code cùng tao đê</p>
           </div>
 
           {/* Social Buttons */}
@@ -117,7 +126,7 @@ export default function RegisterPage() {
               <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>Tên hiển thị</label>
               <div className="relative">
                 <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
-                <input type="text" placeholder="Nguyễn Văn A" value={form.name}
+                <input type="text" placeholder="Tên mày" value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all"
                   style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', color: 'var(--color-text-primary)' }}
@@ -128,16 +137,41 @@ export default function RegisterPage() {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>Email</label>
+              <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>
+                Email <span className="text-xs font-normal opacity-70">(hoặc SĐT)</span>
+              </label>
               <div className="relative">
                 <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
-                <input type="email" placeholder="ban@example.com" value={form.email}
+                <input
+                  type="email"
+                  placeholder="ban@example.com"
+                  value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  required
                   className="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all"
                   style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', color: 'var(--color-text-primary)' }}
                   onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
-                  onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')} />
+                  onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
+                />
+              </div>
+            </div>
+
+            {/* Phone Number */}
+            <div>
+              <label className="block text-sm font-medium mb-1.5" style={{ color: 'var(--color-text-primary)' }}>
+                Số điện thoại <span className="text-xs font-normal opacity-70">(hoặc Email)</span>
+              </label>
+              <div className="relative">
+                <Phone size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2" style={{ color: 'var(--color-text-muted)' }} />
+                <input
+                  type="tel"
+                  placeholder="0987 654 321"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  className="w-full pl-10 pr-4 py-3 rounded-xl text-sm outline-none transition-all"
+                  style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', color: 'var(--color-text-primary)' }}
+                  onFocus={(e) => (e.target.style.borderColor = '#dc2626')}
+                  onBlur={(e) => (e.target.style.borderColor = 'var(--color-border)')}
+                />
               </div>
             </div>
 

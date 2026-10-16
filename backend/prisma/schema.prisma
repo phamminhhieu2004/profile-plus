@@ -25,6 +25,7 @@ model BlogPost {
   content   String
   tags      String[]
   imageUrl  String?
+  mediaUrls String[] @default([])
   featured  Boolean  @default(false)
   readTime  Int      @default(5)
   createdAt DateTime @default(now())
@@ -33,7 +34,9 @@ model BlogPost {
 
 model User {
   id             String          @id @default(uuid())
-  email          String          @unique
+  email          String?         @unique
+  phone          String?         @unique
+  username       String?         @unique
   password       String?
   name           String?
   avatar         String?

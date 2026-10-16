@@ -2,6 +2,7 @@ import {
   Controller,
   Post,
   Get,
+  Put,
   Body,
   UseGuards,
   Req,
@@ -10,7 +11,15 @@ import {
   Query,
 } from '@nestjs/common'
 import { AuthService } from './auth.service'
-import { RegisterDto, LoginDto, ForgotPasswordDto, ResetPasswordDto, RefreshTokenDto } from './dto/auth.dto'
+import {
+  RegisterDto,
+  LoginDto,
+  ForgotPasswordDto,
+  ResetPasswordDto,
+  RefreshTokenDto,
+  UpdateProfileDto,
+  ChangePasswordDto,
+} from './dto/auth.dto'
 import { JwtAuthGuard, GoogleAuthGuard, GithubAuthGuard } from './guards/auth.guard'
 import { ConfigService } from '@nestjs/config'
 
@@ -63,6 +72,18 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   async getMe(@Req() req: any) {
     return this.authService.getMe(req.user.id)
+  }
+
+  @Put('profile')
+  @UseGuards(JwtAuthGuard)
+  async updateProfile(@Req() req: any, @Body() dto: UpdateProfileDto) {
+    return this.authService.updateProfile(req.user.id, dto)
+  }
+
+  @Put('change-password')
+  @UseGuards(JwtAuthGuard)
+  async changePassword(@Req() req: any, @Body() dto: ChangePasswordDto) {
+    return this.authService.changePassword(req.user.id, dto)
   }
 
   // ─── Google OAuth ──────────────────────────────────────────────────────

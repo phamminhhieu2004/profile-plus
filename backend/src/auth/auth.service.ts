@@ -11,7 +11,14 @@ import { PrismaClient } from '@prisma/client'
 import * as bcrypt from 'bcrypt'
 import * as nodemailer from 'nodemailer'
 import * as crypto from 'crypto'
-import { RegisterDto, LoginDto, ForgotPasswordDto, ResetPasswordDto } from './dto/auth.dto'
+import {
+  RegisterDto,
+  LoginDto,
+  ForgotPasswordDto,
+  ResetPasswordDto,
+  UpdateProfileDto,
+  ChangePasswordDto,
+} from './dto/auth.dto'
 
 const prisma = new PrismaClient()
 
@@ -25,15 +32,27 @@ export class AuthService {
   // ─── Email/Password Auth ───────────────────────────────────────────────
 
   async register(dto: RegisterDto) {
-    const existing = await prisma.user.findUnique({ where: { email: dto.email } })
-    if (existing) throw new ConflictException('Email already registered')
+    if (!dto.email && !dto.phone) {
+      throw new BadRequestException('Vui lòng cung cấp Email hoặc Số điện thoại để đăng ký')
+    }
+
+    if (dto.email) {
+      const existingEmail = await prisma.user.findUnique({ where: { email: dto.email } })
+      if (existingEmail) throw new ConflictException('Email này đã được đăng ký')
+    }
+
+    if (dto.phone) {
+      const existingPhone = await prisma.user.findUnique({ where: { phone: dto.phone } })
+      if (existingPhone) throw new ConflictException('Số điện thoại này đã được đăng ký')
+    }
 
     const hashedPassword = await bcrypt.hash(dto.password, 12)
     const user = await prisma.user.create({
       data: {
-        email: dto.email,
+        email: dto.email || null,
+        phone: dto.phone || null,
         password: hashedPassword,
-        name: dto.name,
+        name: dto.name || (dto.email ? dto.email.split('@')[0] : dto.phone),
         role: 'USER',
       },
     })
@@ -42,11 +61,20 @@ export class AuthService {
   }
 
   async login(dto: LoginDto) {
-    const user = await prisma.user.findUnique({ where: { email: dto.email } })
-    if (!user || !user.password) throw new UnauthorizedException('Invalid credentials')
+    const identifier = (dto.email || '').trim()
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email: identifier },
+          { username: identifier },
+          { phone: identifier },
+        ],
+      },
+    })
+    if (!user || !user.password) throw new UnauthorizedException('Tài khoản hoặc mật khẩu không chính xác')
 
     const valid = await bcrypt.compare(dto.password, user.password)
-    if (!valid) throw new UnauthorizedException('Invalid credentials')
+    if (!valid) throw new UnauthorizedException('Tài khoản hoặc mật khẩu không chính xác')
 
     return this.generateTokens(user)
   }
@@ -72,17 +100,30 @@ export class AuthService {
       include: { user: true },
     })
 
+    const adminEmails = [
+      'phamminhhieu18022004@gmail.com',
+    ]
+
     if (oauthAccount) {
       // Update access token
       await prisma.oAuthAccount.update({
         where: { id: oauthAccount.id },
         data: { accessToken: oauthUser.accessToken },
       })
-      return this.generateTokens(oauthAccount.user)
+      let currentUser = oauthAccount.user
+      if (currentUser.email && adminEmails.includes(currentUser.email) && currentUser.role !== 'ADMIN') {
+        currentUser = await prisma.user.update({
+          where: { id: currentUser.id },
+          data: { role: 'ADMIN' },
+        })
+      }
+      return this.generateTokens(currentUser)
     }
 
     // Check if user exists by email
     let user = await prisma.user.findUnique({ where: { email: oauthUser.email } })
+
+    const targetRole = adminEmails.includes(oauthUser.email) ? 'ADMIN' : 'USER'
 
     if (!user) {
       // Create new user
@@ -92,8 +133,13 @@ export class AuthService {
           name: oauthUser.name,
           avatar: oauthUser.avatar,
           emailVerified: true,
-          role: 'USER',
+          role: targetRole,
         },
+      })
+    } else if (adminEmails.includes(user.email || '') && user.role !== 'ADMIN') {
+      user = await prisma.user.update({
+        where: { id: user.id },
+        data: { role: 'ADMIN' },
       })
     }
 
@@ -190,8 +236,9 @@ export class AuthService {
 
     const frontendUrl = this.configService.get('FRONTEND_URL') || 'http://localhost:5173'
     const resetUrl = `${frontendUrl}/reset-password?token=${resetToken}`
-
-    await this.sendResetEmail(user.email, user.name || 'User', resetUrl)
+    if (user.email) {
+      await this.sendResetEmail(user.email, user.name || 'User', resetUrl)
+    }
 
     return { message: 'If that email exists, a reset link has been sent.' }
   }
@@ -248,10 +295,60 @@ export class AuthService {
     return safe
   }
 
+  async updateProfile(userId: string, dto: UpdateProfileDto) {
+    const user = await prisma.user.findUnique({ where: { id: userId } })
+    if (!user) throw new NotFoundException('User not found')
+
+    if (dto.email && dto.email !== user.email) {
+      const existingEmail = await prisma.user.findFirst({
+        where: { email: dto.email, NOT: { id: userId } },
+      })
+      if (existingEmail) throw new ConflictException('Email đã được sử dụng bởi tài khoản khác')
+    }
+
+    if (dto.phone && dto.phone !== user.phone) {
+      const existingPhone = await prisma.user.findFirst({
+        where: { phone: dto.phone, NOT: { id: userId } },
+      })
+      if (existingPhone) throw new ConflictException('Số điện thoại đã được sử dụng bởi tài khoản khác')
+    }
+
+    const updated = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        ...(dto.name !== undefined && { name: dto.name }),
+        ...(dto.email !== undefined && { email: dto.email || null }),
+        ...(dto.phone !== undefined && { phone: dto.phone || null }),
+        ...(dto.avatar !== undefined && { avatar: dto.avatar || null }),
+      },
+    })
+
+    const { password, ...safe } = updated
+    return safe
+  }
+
+  async changePassword(userId: string, dto: ChangePasswordDto) {
+    const user = await prisma.user.findUnique({ where: { id: userId } })
+    if (!user) throw new NotFoundException('User not found')
+
+    if (user.password) {
+      const valid = await bcrypt.compare(dto.currentPassword, user.password)
+      if (!valid) throw new UnauthorizedException('Mật khẩu hiện tại không chính xác')
+    }
+
+    const hashedPassword = await bcrypt.hash(dto.newPassword, 12)
+    await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedPassword },
+    })
+
+    return { success: true, message: 'Đổi mật khẩu thành công!' }
+  }
+
   // ─── Private Helpers ───────────────────────────────────────────────────
 
-  private async generateTokens(user: { id: string; email: string; role: string }) {
-    const payload = { sub: user.id, email: user.email, role: user.role }
+  private async generateTokens(user: { id: string; email?: string | null; role: string; [key: string]: any }) {
+    const payload = { sub: user.id, email: user.email || '', role: user.role }
 
     const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' })
     const refreshToken = crypto.randomBytes(40).toString('hex')
@@ -269,9 +366,11 @@ export class AuthService {
       refreshToken,
       user: {
         id: user.id,
-        email: (user as any).email,
-        name: (user as any).name,
-        avatar: (user as any).avatar,
+        email: user.email,
+        phone: user.phone,
+        username: user.username,
+        name: user.name,
+        avatar: user.avatar,
         role: user.role,
       },
     }
