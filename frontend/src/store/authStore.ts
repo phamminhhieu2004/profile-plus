@@ -3,7 +3,11 @@ import { persist } from 'zustand/middleware'
 import axios from 'axios'
 
 const getBaseApiUrl = () => {
-  const envUrl = (import.meta.env.VITE_API_URL || 'http://localhost:3001').trim()
+  const envUrl = (import.meta.env.VITE_API_URL || '').trim()
+  const isProdHost = typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+  if (!envUrl || (isProdHost && envUrl.includes('localhost'))) {
+    return '/api'
+  }
   return envUrl.endsWith('/api') ? envUrl : `${envUrl.replace(/\/$/, '')}/api`
 }
 export const API_BASE_URL = getBaseApiUrl()
