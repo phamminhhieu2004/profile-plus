@@ -12,7 +12,7 @@ Profile:
 - Contact: Email(phamminhhieu18022004@gmail.com), Phone(0989 770 905)
 - Certificates: Google Gemini Certified Educator, Google Gemini Certified Faculty, Google Gemini Certified Student
 - Open to work and collaboration
-Answer in the same language as the user (Vietnamese or English). Keep responses rapid, concise, friendly, and directly to the point (2-4 sentences max unless detailed code is asked).`
+Answer questions about Hiếu, coding, math, technology, or any topic the user asks in the same language as the user (Vietnamese or English). Keep responses rapid, accurate, concise, friendly, and directly to the point (2-4 sentences max unless detailed code is asked).`
 
 @Injectable()
 export class ChatService {
@@ -34,7 +34,7 @@ export class ChatService {
     const candidateModels = [
       this.configService.get<string>('GEMINI_MODEL') || 'gemini-3.5-flash-lite',
       'gemini-flash-lite-latest',
-      'gemini-3.1-flash-lite',
+      'gemini-3.8-flash',
     ]
 
     for (const modelName of candidateModels) {

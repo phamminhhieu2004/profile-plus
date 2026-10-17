@@ -5,6 +5,7 @@ import { MessageCircle, X, Send, Minimize2, Bot, User } from 'lucide-react'
 import { useAppStore } from '../../store/appStore'
 
 import axios from 'axios'
+import { API_BASE_URL } from '../../store/authStore'
 
 interface Message {
   id: string
@@ -13,8 +14,8 @@ interface Message {
   timestamp: Date
 }
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || ''
-const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL || 'gemini-3.5-flash-lite'
+const GEMINI_API_KEY = (import.meta.env.VITE_GEMINI_API_KEY || '').trim()
+const GEMINI_MODEL = (import.meta.env.VITE_GEMINI_MODEL || 'gemini-3.5-flash-lite').trim()
 
 const SYSTEM_CONTEXT = `You are the AI assistant for Minh Hieu Dev (Phạm Minh Hiếu)'s personal portfolio website. 
 Here is his profile:
@@ -28,19 +29,21 @@ Here is his profile:
 - Contact: Email(phamminhhieu18022004@gmail.com), Phone(0989 770 905)
 - Certificates: Google Gemini Certified Educator, Faculty, Student
 - Open to work / collaboration opportunities
-Answer questions about Hiếu in the language the user writes in (Vietnamese or English). Be friendly, helpful, rapid, and keep responses concise (under 3-4 sentences) so that the user receives the answer as fast as possible.`
+Answer questions about Hiếu, coding, math, technology, or any topic the user asks in the language the user writes in (Vietnamese or English). Be friendly, accurate, helpful, rapid, and keep responses concise (under 3-4 sentences) so that the user receives the answer as fast as possible.`
 
 async function streamGeminiResponse(
   userMessage: string,
   history: Message[],
   onChunk: (chunk: string) => void
 ): Promise<void> {
-  const candidateModels = [
-    GEMINI_MODEL,
-    'gemini-3.5-flash-lite',
-    'gemini-flash-lite-latest',
-    'gemini-3.1-flash-lite',
-  ]
+  const candidateModels = Array.from(
+    new Set([
+      GEMINI_MODEL,
+      'gemini-3.5-flash-lite',
+      'gemini-flash-lite-latest',
+      'gemini-3.8-flash',
+    ])
+  )
 
   const conversationHistory = history
     .filter((m) => m.content && m.id !== '0')
@@ -52,10 +55,11 @@ async function streamGeminiResponse(
 
   let streamedAny = false
 
-  // 1. Try streaming directly from Google Gemini API
+  // 1. Try Google Gemini API directly from browser
   if (GEMINI_API_KEY) {
     for (const model of candidateModels) {
       try {
+        // 1a. Try streamGenerateContent via SSE
         const res = await fetch(
           `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${GEMINI_API_KEY}`,
           {
@@ -67,54 +71,81 @@ async function streamGeminiResponse(
                 ...conversationHistory,
                 { role: 'user', parts: [{ text: userMessage }] },
               ],
-              generationConfig: { temperature: 0.6, maxOutputTokens: 350 },
+              generationConfig: { temperature: 0.6, maxOutputTokens: 400 },
             }),
           }
         )
 
-        if (!res.ok || !res.body) {
-          continue
+        if (res.ok && res.body) {
+          const reader = res.body.getReader()
+          const decoder = new TextDecoder()
+          let buffer = ''
+
+          while (true) {
+            const { done, value } = await reader.read()
+            if (done) break
+            buffer += decoder.decode(value, { stream: true })
+            const lines = buffer.split('\n')
+            buffer = lines.pop() || ''
+            for (const line of lines) {
+              const trimmed = line.trim()
+              if (!trimmed.startsWith('data: ')) continue
+              try {
+                const json = JSON.parse(trimmed.slice(6))
+                const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text
+                if (chunk) {
+                  onChunk(chunk)
+                  streamedAny = true
+                }
+              } catch { }
+            }
+          }
+
+          if (streamedAny) return
         }
 
-        const reader = res.body.getReader()
-        const decoder = new TextDecoder()
-        let buffer = ''
+        // 1b. Fallback: try direct generateContent if streaming produced no chunks
+        const directRes = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: SYSTEM_CONTEXT }] },
+              contents: [
+                ...conversationHistory,
+                { role: 'user', parts: [{ text: userMessage }] },
+              ],
+              generationConfig: { temperature: 0.6, maxOutputTokens: 400 },
+            }),
+          }
+        )
 
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          buffer += decoder.decode(value, { stream: true })
-          const lines = buffer.split('\n')
-          buffer = lines.pop() || ''
-          for (const line of lines) {
-            const trimmed = line.trim()
-            if (!trimmed.startsWith('data: ')) continue
-            try {
-              const json = JSON.parse(trimmed.slice(6))
-              const chunk = json?.candidates?.[0]?.content?.parts?.[0]?.text
-              if (chunk) {
-                onChunk(chunk)
-                streamedAny = true
-              }
-            } catch { }
+        if (directRes.ok) {
+          const data = await directRes.json()
+          const text = data?.candidates?.[0]?.content?.parts?.[0]?.text
+          if (text) {
+            for (const char of text) {
+              onChunk(char)
+              await new Promise((r) => setTimeout(r, 6))
+            }
+            return
           }
         }
-
-        if (streamedAny) return
-      } catch {
-        // try next model or fallback
+      } catch (geminiErr) {
+        console.warn(`Gemini client call attempt failed (${model}):`, geminiErr)
       }
     }
   }
 
-  // 2. Fallback to backend /api/chat
+  // 2. Fallback to Render backend /api/chat
   try {
-    const backendRes = await axios.post('/api/chat', { message: userMessage })
+    const backendRes = await axios.post(`${API_BASE_URL}/chat`, { message: userMessage }, { timeout: 25000 })
     const reply = backendRes.data?.data?.content
     if (reply) {
       for (const char of reply) {
         onChunk(char)
-        await new Promise((r) => setTimeout(r, 10))
+        await new Promise((r) => setTimeout(r, 8))
       }
       return
     }
@@ -122,26 +153,26 @@ async function streamGeminiResponse(
     console.warn('Backend chat fallback error:', err)
   }
 
-  // 3. Fallback to smart local contextual responder
+  // 3. Fallback to smart local contextual responder if completely unreachable
   const lower = userMessage.toLowerCase()
   let fallback = ''
   if (lower.includes('chào') || lower.includes('hello') || lower.includes('hi')) {
-    fallback = 'Chào bạn! Mình là trợ lý AI của Minh Hiếu (Minh Hieu Dev). Bạn muốn tìm hiểu về kỹ năng lập trình, các dự án công nghệ ô tô hay cách kết nối với Hiếu?'
+    fallback = 'Chào bạn! Mình là trợ lý AI của Minh Hiếu (Minh Hieu Dev). Bạn muốn tìm hiểu về kỹ năng lập trình, dự án công nghệ hay cách kết nối với Hiếu?'
   } else if (lower.includes('kỹ năng') || lower.includes('skill') || lower.includes('công nghệ') || lower.includes('stack')) {
     fallback = 'Hiếu thành thạo Spring Boot (95%), FastAPI (90%), TensorFlow (90%), Node.js (85%) và có chuyên môn về hệ thống chẩn đoán ô tô ECU/OBD!'
   } else if (lower.includes('liên hệ') || lower.includes('contact') || lower.includes('email') || lower.includes('sđt') || lower.includes('phone') || lower.includes('instagram')) {
-    fallback = 'Bạn có thể kết nối với Hiếu qua Instagram @minhhieudev.site, Telegram @minhhieudev, hoặc qua trang Liên hệ!'
+    fallback = 'Bạn có thể kết nối với Hiếu qua Email: phamminhhieu18022004@gmail.com, Hotline: 0989 770 905, hoặc Instagram @minhhieudev.site!'
   } else if (lower.includes('học vấn') || lower.includes('trường') || lower.includes('ictu') || lower.includes('sinh viên')) {
     fallback = 'Hiếu hiện là sinh viên chuyên ngành Kỹ thuật Công nghệ Ô tô tại Đại học Công nghệ Thông tin & Truyền thông (ICTU) từ năm 2022 đến nay.'
   } else if (lower.includes('nhạc') || lower.includes('music') || lower.includes('dj') || lower.includes('producer')) {
     fallback = 'Ngoài lập trình Backend và AI, Hiếu còn là DJ/Music Producer đam mê sáng tạo âm nhạc điện tử!'
   } else {
-    fallback = 'Cảm ơn câu hỏi của bạn! Hiếu là một Backend & AI Developer từ Thái Nguyên, Việt Nam, luôn sẵn sàng kết nối và hợp tác trên các dự án thú vị.'
+    fallback = 'Hiện kết nối AI đang khởi động lại hoặc mạng gián đoạn. Bạn có thể hỏi mình về kỹ năng, dự án, học vấn hoặc kết nối trực tiếp với Hiếu qua Email phamminhhieu18022004@gmail.com / Hotline 0989 770 905 nhé!'
   }
 
   for (const char of fallback) {
     onChunk(char)
-    await new Promise((r) => setTimeout(r, 12))
+    await new Promise((r) => setTimeout(r, 10))
   }
 }
 

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { Send, Mail, Phone, MapPin, Loader2 } from 'lucide-react'
 import { Github, Facebook, Instagram, TikTok } from '../components/icons/SocialIcons'
 import axios from 'axios'
+import { API_BASE_URL } from '../store/authStore'
 import emailjs from '@emailjs/browser'
 import toast from 'react-hot-toast'
 import PageWrapper from '../components/ui/PageWrapper'
@@ -77,7 +78,7 @@ export default function ContactPage() {
 
     // 2. Also forward to backend to record / send via SMTP if configured
     try {
-      await axios.post('/api/contact', form)
+      await axios.post(`${API_BASE_URL}/contact`, form)
     } catch (backendErr) {
       console.warn('Backend contact logging error:', backendErr)
     }
