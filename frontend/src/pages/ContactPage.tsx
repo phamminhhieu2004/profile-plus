@@ -26,7 +26,7 @@ const socialLinks = [
 
 const contactInfo = [
   { icon: Phone, label: 'Điện thoại', value: '0989 770 905', href: 'tel:0989770905' },
-  { icon: Mail, label: 'Email', value: 'contact@phamminhhieu.dev', href: 'mailto:contact@phamminhhieu.dev' },
+  { icon: Mail, label: 'Email', value: 'phamminhhieu18022004@gmail.com', href: 'mailto:phamminhhieu18022004@gmail.com' },
   { icon: MapPin, label: 'Địa chỉ', value: 'Thái Nguyên, Việt Nam', href: null },
 ]
 

@@ -40,7 +40,7 @@ services:
       SMTP_PORT: ${SMTP_PORT}
       SMTP_USER: ${SMTP_USER}
       SMTP_PASS: ${SMTP_PASS}
-      CONTACT_RECEIVER: ${CONTACT_RECEIVER:-phamminhhieu2004@gmail.com}
+      CONTACT_RECEIVER: ${CONTACT_RECEIVER:-phamminhhieu18022004@gmail.com}
       JWT_SECRET: ${JWT_SECRET:-supersecretkey_profileplus}
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}

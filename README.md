@@ -172,7 +172,7 @@ docker-compose up --build -d
 - **Facebook**: [Phạm Minh Hiếu](https://www.facebook.com/minhhieudev.site/)
 - **TikTok**: [@goodboy.real_minhhieu](https://www.tiktok.com/@goodboy.real_minhhieu)
 - **Telegram**: [@minhhieudev](https://t.me/minhhieudev)
-- **Email**: `phamminhhieu2004@gmail.com`
+- **Email**: `phamminhhieu18022004@gmail.com`
 - **Hotline**: `0989 770 905`
 
 ---
